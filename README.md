@@ -1,19 +1,22 @@
-## Description
-Creates an app which tests the spring cloud connector to cloudant.
+## Test project for Spring Cloud Connectors with Cloudant on IBM Cloud
+This project is a quick test to verify the behavior of the Spring Cloud Connector for Cloudant on IBM Cloud, as provided by https://github.com/IBM-Cloud/bluemix-cloud-connectors. This project provides a simple REST endpoint that will verify that a bound Cloudant service is detected appropriately, and be used by the application, by performing a quick read and write to the database.
 
 ## Setup
-1. Create ibm cloud account: https://cloud.ibm.com/
-2. Install ibm cloud CLI: https://cloud.ibm.com/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use
-3. ibm clound login: ibmcloud login --sso
-4. cloud foundry login: ibmcloud target --cf
+You'll need ibm cloud CLI from https://cloud.ibm.com/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use and bx cf installed and configured to talk to the appropriate cf org/spac etc.
 
 ## Build
-./mvnw clean package -Dmaven.test.skip=true
-(not doing any testing)
+```
+./mvnw clean package
+```
 
 ## Deploy
-bx cf push -b java_buildpack -p target/testapp-0.0.1-SNAPSHOT.jar TerrenceTestApp
+```
+bx cf push -b java_buildpack -p target/testapp-0.0.1-SNAPSHOT.jar YourAppname
+```
 
 ## Verify
-1. navigate to http://terrencetestapp.mybluemix.net/test
-2. check log: bx cf logs YourAppname --recent
+1. navigate to http://YourAppname.mybluemix.net/test
+2. check log: 
+```
+bx cf logs YourAppname --recent
+```
