@@ -1,4 +1,4 @@
-package org.terrence.testapp;
+package org.terrence.testapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
