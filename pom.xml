@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>net.bluemix</groupId>
 			<artifactId>bluemix-cloud-connectors-cloudfoundry</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<version>0.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -40,16 +40,6 @@
 			<version>2.0.5.RELEASE</version>
 		</dependency>		
 	</dependencies>
-	<repositories>
-		<repository>
-		<id>ossrh-snapshots</id>
-		<name>OSSRH Snapshots</name>
-		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		<snapshots>
-			<enabled>true</enabled>
-		</snapshots>
-	</repository>
-  </repositories>
 
 	<build>
 		<plugins>
