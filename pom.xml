@@ -29,15 +29,15 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.cloudant</groupId>
-			<artifactId>cloudant-spring-boot-starter</artifactId>
-			<version>0.0.3</version>
+			<groupId>com.ibm.watson.developer_cloud</groupId>
+			<artifactId>watson-spring-boot-starter</artifactId>
+			<version>0.1.0</version>
 		</dependency>
-<dependency>
-  <groupId>io.pivotal.cfenv</groupId>
-  <artifactId>java-cfenv-boot</artifactId>
-  <version>1.0.0.RELEASE</version>
-</dependency>		
+		<dependency>
+			<groupId>io.pivotal.cfenv</groupId>
+			<artifactId>java-cfenv-boot</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>		
 	</dependencies>
 
 	<build>
