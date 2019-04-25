@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.pivotal.cfenv.core.CfCredentials;
+import io.pivotal.cfenv.core.UriInfo;
 
 import org.terrence.testapp.uri.WatsonDiscoveryUriInfo;
 
@@ -42,14 +43,14 @@ public class WatsonDiscoveryCfCredentials extends CfCredentials {
      * 
      * @return value of the username, null if not found.
      */
-    public String getVersion() {
-        String version = getString("version", "versionDate");
-        if (version != null) {
-            return version;
-        }
-        UriInfo uriInfo = createOrGetUriInfo();
-        return (uriInfo != null) ? uriInfo.getVersion() : null;
-    }
+    // public String getVersion() {
+    // String version = getString("version", "versionDate");
+    // if (version != null) {
+    // return version;
+    // }
+    // UriInfo uriInfo = createOrGetUriInfo();
+    // return (uriInfo != null) ? uriInfo.getVersion() : null;
+    // }
 
     /**
      * Return UriInfo derived from URI field
@@ -60,16 +61,19 @@ public class WatsonDiscoveryCfCredentials extends CfCredentials {
      */
     public UriInfo getUriInfo(String uriScheme) {
         String uri = getUri(uriScheme);
+
         UriInfo uriInfo;
         if (uri == null) {
             String hostname = getHost();
             String port = getPort();
             String username = getUsername();
             String password = getPassword();
-            String version = getVersion();
+            // String version = getVersion();
             String databaseName = getName();
-            uriInfo = new UriInfo(uriScheme, hostname, Integer.valueOf(port), username, password, version,
-                    databaseName);
+            // uriInfo = new UriInfo(uriScheme, hostname, Integer.valueOf(port), username,
+            // password, version,
+            // databaseName);
+            uriInfo = new UriInfo(uriScheme, hostname, Integer.valueOf(port), username, password, databaseName);
         } else {
             uriInfo = new UriInfo(uri);
         }

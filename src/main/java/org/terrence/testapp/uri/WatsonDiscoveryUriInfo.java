@@ -32,6 +32,12 @@ import io.pivotal.cfenv.core.UriInfo;
  */
 public class WatsonDiscoveryUriInfo extends UriInfo {
 
+    public WatsonDiscoveryUriInfo(String uriString) {
+        super(uriString);
+    }
+
+    private String version;
+
     private String scheme;
 
     private String host;
@@ -42,8 +48,6 @@ public class WatsonDiscoveryUriInfo extends UriInfo {
 
     private String password;
 
-    private String version;
-
     private String path;
 
     private String query;
@@ -52,45 +56,48 @@ public class WatsonDiscoveryUriInfo extends UriInfo {
 
     private String uriString;
 
-    public UriInfo(String scheme, String host, int port, String username, String password, String version) {
-        this(scheme, host, port, username, password, version, null, null);
-    }
+    // public UriInfo(String scheme, String host, int port, String username, String
+    // password, String version) {
+    // this(scheme, host, port, username, password, version, null, null);
+    // }
 
-    public UriInfo(String scheme, String host, int port, String username, String password, String version,
-            String path) {
-        this(scheme, host, port, username, password, path, version, null);
-    }
+    // public UriInfo(String scheme, String host, int port, String username, String
+    // password, String version,
+    // String path) {
+    // this(scheme, host, port, username, password, path, version, null);
+    // }
 
-    public UriInfo(String scheme, String host, int port, String username, String password, String version, String path,
-            String query) {
-        this.scheme = scheme;
-        this.host = host;
-        this.port = port;
-        this.userName = username;
-        this.password = password;
-        this.version = version;
-        this.path = path;
-        this.query = query;
+    // public UriInfo(String scheme, String host, int port, String username, String
+    // password, String version, String path,
+    // String query) {
+    // this.scheme = scheme;
+    // this.host = host;
+    // this.port = port;
+    // this.userName = username;
+    // this.password = password;
+    // this.version = version;
+    // this.path = path;
+    // this.query = query;
 
-        this.uriString = buildUri().toString();
-    }
+    // this.uriString = buildUri().toString();
+    // }
 
-    public UriInfo(String uriString) {
-        this.uriString = uriString;
-        System.out.println("uriString: " + uriString);
+    // public UriInfo(String uriString) {
+    // this.uriString = uriString;
+    // System.out.println("uriString: " + uriString);
 
-        URI uri = getUri();
-        this.scheme = uri.getScheme();
-        this.host = uri.getHost();
-        this.port = uri.getPort();
-        this.path = parsePath(uri);
-        this.query = uri.getQuery();
-        this.schemeSpecificPart = uri.getSchemeSpecificPart();
+    // URI uri = getUri();
+    // this.scheme = uri.getScheme();
+    // this.host = uri.getHost();
+    // this.port = uri.getPort();
+    // this.path = parsePath(uri);
+    // this.query = uri.getQuery();
+    // this.schemeSpecificPart = uri.getSchemeSpecificPart();
 
-        String[] userinfo = parseUserinfo(uri);
-        this.userName = uriDecode(userinfo[0]);
-        this.password = uriDecode(userinfo[1]);
-    }
+    // String[] userinfo = parseUserinfo(uri);
+    // this.userName = uriDecode(userinfo[0]);
+    // this.password = uriDecode(userinfo[1]);
+    // }
 
     private static String uriDecode(String s) {
         if (s == null) {
@@ -199,6 +206,8 @@ public class WatsonDiscoveryUriInfo extends UriInfo {
         String userInfo = null;
 
         if (userName != null && password != null) {
+            System.out.println("buildUri userName: " + userName);
+            System.out.println("buildUri password: " + password);
             userInfo = userName + ":" + password;
         }
 
@@ -220,6 +229,7 @@ public class WatsonDiscoveryUriInfo extends UriInfo {
 
         if (userInfo != null) {
             String[] userPass = userInfo.split(":");
+            System.out.println("userPass: " + userPass);
             if (userPass.length != 2) {
                 throw new IllegalArgumentException("Bad userinfo in URI: " + uri);
             }
@@ -237,12 +247,6 @@ public class WatsonDiscoveryUriInfo extends UriInfo {
             return rawPath.substring(1);
         }
         return null;
-    }
-
-    @Override
-    public String toString() {
-        System.out.println("toString: " + uriString);
-        return uriString;
     }
 
 }

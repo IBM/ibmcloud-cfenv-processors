@@ -30,13 +30,20 @@ public class CloudantCfEnvProcessor implements CfEnvProcessor {
 
     @Override
     public void process(CfCredentials cfCredentials, Map<String, Object> properties) {
+        System.out.println("getUri(): " + cfCredentials.getUri());
         properties.put("watson.discovery.url", cfCredentials.getUri("http"));
+        System.out.println("getUri(http): " + cfCredentials.getUri("http"));
         properties.put("watson.discovery.username", cfCredentials.getUsername());
+        System.out.println("getUserName: " + cfCredentials.getUsername());
         properties.put("watson.discovery.password", cfCredentials.getPassword());
-        if (cfCredentials instanceof WatsonDiscoveryCfCredentials) {
-            WatsonDiscoveryCfCredentials watsonDiscoveryCreds = (WatsonDiscoveryCfCredentials) cfCredentials;
-            properties.put("watson.discovery.version", watsonDiscoveryCreds.getVersion());
-        }
+        System.out.println("getPassword: " + cfCredentials.getPassword());
+        properties.put("watson.discovery.versionDate", "2018-3-14");
+        // if (cfCredentials instanceof WatsonDiscoveryCfCredentials) {
+        // WatsonDiscoveryCfCredentials watsonDiscoveryCreds =
+        // (WatsonDiscoveryCfCredentials) cfCredentials;
+        // properties.put("watson.discovery.version",
+        // watsonDiscoveryCreds.getVersion());
+        // }
 
     }
 }
