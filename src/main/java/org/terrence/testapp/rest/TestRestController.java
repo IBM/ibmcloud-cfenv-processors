@@ -49,7 +49,7 @@ public class TestRestController {
       // query collection
 
       String query = "President";
-      pw.println("Query is: '" + query + "'");
+      pw.println("Query for: '" + query + "' in the \"system\" environment and \"news-en\" collection...");
       QueryOptions options = new QueryOptions.Builder("system", "news-en").naturalLanguageQuery(query).build();
       QueryResponse queryResponse = discovery.query(options).execute();
 
