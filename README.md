@@ -6,7 +6,6 @@ Uses the CFEnv processor to set the properties from the service entry in VCAP_SE
 
 ## Setup
 1. You'll need ibm cloud CLI from https://cloud.ibm.com/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use and bx cf installed and configured to talk to the appropriate cf org/space etc.
-2. You'll need to edit the application.properties with your own Discovery credentials
 
 ## Build
 ```
