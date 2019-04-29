@@ -1,15 +1,13 @@
 package org.terrence.testapp.rest;
 
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.stream.Collectors;
-import com.ibm.watson.developer_cloud.discovery.v1.Discovery;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListCollectionsOptions;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListCollectionsResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListEnvironmentsOptions;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListEnvironmentsResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.QueryOptions;
-import com.ibm.watson.developer_cloud.discovery.v1.model.QueryResponse;
+import java.util.Arrays;
+
+import com.ibm.watson.developer_cloud.speech_to_text.v1.SpeechToText;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognizeOptions;
+import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechRecognitionResults;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestRestController {
 
   @Autowired
-  protected Discovery discovery;
+  protected SpeechToText speechToText;
 
   StringWriter sw = new StringWriter();
   PrintWriter pw = new PrintWriter(sw);
@@ -31,39 +29,14 @@ public class TestRestController {
     try {
       pw.println("Beginning test...");
 
-      // list existing environments, should be a "system" environment by default
+      InputStream inputSteam = this.getClass().getResourceAsStream("/audio-file.flac");
+      RecognizeOptions recognizeOptions = new RecognizeOptions.Builder().audio(inputSteam).contentType("audio/flac")
+          .model("en-US_BroadbandModel").keywords(Arrays.asList("colorado", "tornado", "tornadoes"))
+          .keywordsThreshold((float) 0.5).maxAlternatives(3).build();
 
-      ListEnvironmentsOptions listEnvironmentOptions = new ListEnvironmentsOptions.Builder().build();
-      ListEnvironmentsResponse listEnvironmentResponse = discovery.listEnvironments(listEnvironmentOptions).execute();
-      pw.println("Environments: ");
-      pw.println(listEnvironmentResponse);
-
-      // list existing collections, should be a "news-en" collection by default
-
-      String environmentId = "system";
-      ListCollectionsOptions listCollectionOptions = new ListCollectionsOptions.Builder(environmentId).build();
-      ListCollectionsResponse listCollectionsResponse = discovery.listCollections(listCollectionOptions).execute();
-      pw.println("Collections: ");
-      pw.println(listCollectionsResponse);
-
-      // query collection
-
-      String query = "President";
-      pw.println("Query for: '" + query + "' in the \"system\" environment and \"news-en\" collection...");
-      QueryOptions options = new QueryOptions.Builder("system", "news-en").naturalLanguageQuery(query).build();
-      QueryResponse queryResponse = discovery.query(options).execute();
-
-      // get results from query
-      String results = queryResponse.getResults().stream().map(r -> (String) r.get("title"))
-          .collect(Collectors.joining());
-      pw.println("Query results: '" + results + "'");
-
-      // check to see if query exists in the results
-      if (results.toLowerCase().contains(query.toLowerCase())) {
-        pw.println("PASS: Query results contain query");
-      } else {
-        pw.println("FAIL: Query results do not contain the query");
-      }
+      SpeechRecognitionResults speechRecognitionResults = speechToText.recognize(recognizeOptions).execute();
+      pw.println(speechRecognitionResults.toString());
+      pw.println("PASS: Audio file was transcribed");
 
     } catch (Exception e) {
       pw.println("FAIL: Unexpected error during test.");

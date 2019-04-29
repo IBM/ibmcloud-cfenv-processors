@@ -1,12 +1,11 @@
-## Test project for Watson Discovery on IBM Cloud using Spring Boot Starter and CFEnv
-Project to test a Watson Discovery service instance on IBM Cloud using Spring Boot Starter: https://github.com/watson-developer-cloud/spring-boot-starter. By default a "system" environment with its "news-en" collection can be queried. A test query will be sent and the results will be checked to see if the query appears in the results. 
+## Test project for Watson Speech To Text on IBM Cloud using Spring Boot Starter and CFEnv
+Project to test a Watson Speech To Text service instance on IBM Cloud using Spring Boot Starter: https://github.com/watson-developer-cloud/spring-boot-starter. A sample audio file will be processed and transcribed and the results will be displayed. 
 
 Uses the CFEnv processor to set the properties from the service entry in VCAP_SERVICES.
 - https://github.com/pivotal-cf/java-cfenv
 
 ## Setup
 1. You'll need ibm cloud CLI from https://cloud.ibm.com/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use and bx cf installed and configured to talk to the appropriate cf org/space etc.
-2. You'll need to edit the application.properties with your own Discovery credentials
 
 ## Build
 ```
