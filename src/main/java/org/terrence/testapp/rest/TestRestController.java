@@ -31,12 +31,19 @@ public class TestRestController {
 
       InputStream inputSteam = this.getClass().getResourceAsStream("/audio-file.flac");
       RecognizeOptions recognizeOptions = new RecognizeOptions.Builder().audio(inputSteam).contentType("audio/flac")
-          .model("en-US_BroadbandModel").keywords(Arrays.asList("colorado", "tornado", "tornadoes"))
-          .keywordsThreshold((float) 0.5).maxAlternatives(3).build();
+          .model("en-US_BroadbandModel").maxAlternatives(3).build();
 
       SpeechRecognitionResults speechRecognitionResults = speechToText.recognize(recognizeOptions).execute();
-      pw.println(speechRecognitionResults.toString());
-      pw.println("PASS: Audio file was transcribed");
+      String results = speechRecognitionResults.toString();
+      pw.println("Recognition results: '" + results + "'");
+
+      // check to see if query exists in the results
+      String keyword = "Colorado";
+      if (results.toLowerCase().contains(keyword.toLowerCase())) {
+        pw.println("PASS: Recognition results contain keyword: '" + keyword + "'");
+      } else {
+        pw.println("FAIL: Recognition results do not contain keyword: '" + keyword + "'");
+      }
 
     } catch (Exception e) {
       pw.println("FAIL: Unexpected error during test.");
