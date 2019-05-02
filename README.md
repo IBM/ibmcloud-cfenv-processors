@@ -1,5 +1,5 @@
-## Test project for Watson Assistant on IBM Cloud using Spring Boot Starter and CFEnv
-Project to test a Watson Assistant service instance on IBM Cloud using Spring Boot Starter: https://github.com/watson-developer-cloud/spring-boot-starter. A sample string of text will be analyzed by the assistant. 
+## Test project for Watson Language Translator on IBM Cloud using Spring Boot Starter and CFEnv
+Project to test a Watson Language Translator service instance on IBM Cloud using Spring Boot Starter: https://github.com/watson-developer-cloud/spring-boot-starter. A sample string of text will be translated. 
 
 Uses the CFEnv processor to set the properties from the service entry in VCAP_SERVICES.
 - https://github.com/pivotal-cf/java-cfenv
