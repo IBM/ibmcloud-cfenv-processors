@@ -1,33 +1,36 @@
 package org.terrence.testapp.rest;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
-import com.ibm.watson.developer_cloud.text_to_speech.v1.model.SynthesizeOptions;
-import com.ibm.watson.developer_cloud.text_to_speech.v1.util.WaveUtils;
+import com.ibm.watson.assistant.v1.Assistant;
+import com.ibm.watson.assistant.v1.model.CreateIntentOptions;
+import com.ibm.watson.assistant.v1.model.CreateWorkspaceOptions;
+import com.ibm.watson.assistant.v1.model.DeleteWorkspaceOptions;
+import com.ibm.watson.assistant.v1.model.Example;
+import com.ibm.watson.assistant.v1.model.GetWorkspaceOptions;
+import com.ibm.watson.assistant.v1.model.Intent;
+import com.ibm.watson.assistant.v1.model.ListWorkspacesOptions;
+import com.ibm.watson.assistant.v1.model.MessageInput;
+import com.ibm.watson.assistant.v1.model.MessageOptions;
+import com.ibm.watson.assistant.v1.model.MessageResponse;
+import com.ibm.watson.assistant.v1.model.RuntimeIntent;
+import com.ibm.watson.assistant.v1.model.Workspace;
+import com.ibm.watson.assistant.v1.model.WorkspaceCollection;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestRestController {
 
   @Autowired
-  protected TextToSpeech textToSpeech;
+  protected Assistant assistant;
 
-  // transcribe sample text and save as wav file
+  // Test Assistant by creating a workspace with and intent and then analyze text
 
   @RequestMapping(value = "/test", produces = "text/plain")
   public String runTest() {
@@ -36,22 +39,87 @@ public class TestRestController {
 
     try {
       pw.println("Beginning test...");
-      SynthesizeOptions synthesizeOptions = new SynthesizeOptions.Builder().text("One two one two this is just a test")
-          .accept("audio/wav").voice("en-US_AllisonVoice").build();
-      InputStream inputStream = textToSpeech.synthesize(synthesizeOptions).execute();
-      pw.println("Text translated");
-      InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
-      OutputStream out = new FileOutputStream("/tmp/test.wav");
-      byte[] buffer = new byte[1024];
-      int length;
-      while ((length = in.read(buffer)) > 0) {
-        out.write(buffer, 0, length);
+
+      // create workspace
+
+      pw.println("Creating Workspace...");
+
+      String workspaceName = "API test";
+      String workspaceDescription = "Example workspace created via API";
+
+      CreateWorkspaceOptions createWorkspaceOptions = new CreateWorkspaceOptions.Builder().name(workspaceName)
+          .description(workspaceDescription).build();
+
+      Workspace response = assistant.createWorkspace(createWorkspaceOptions).execute().getResult();
+      System.out.println("Create Workspace Response: " + response);
+      String workspaceId = response.getWorkspaceId();
+      pw.println("Workspace created with WorkspaceId: " + workspaceId);
+
+      // create intent
+
+      pw.println("Creating Intent...");
+      String intent = "Hello";
+
+      List<Example> examples = new ArrayList<Example>();
+      examples.add(new Example.Builder("Good morning").build());
+      examples.add(new Example.Builder("Hi there").build());
+      examples.add(new Example.Builder("Hello").build());
+
+      CreateIntentOptions createIntentOptions = new CreateIntentOptions.Builder(workspaceId, intent).examples(examples)
+          .build();
+
+      Intent intentResponse = assistant.createIntent(createIntentOptions).execute().getResult();
+      System.out.println("Create Intent Response: " + intentResponse);
+      String intentName = intentResponse.getIntent();
+      pw.println("Intent Created with name: " + intentName);
+
+      // create and set RuntimeIntent
+
+      RuntimeIntent runtimeIntent = new RuntimeIntent();
+      runtimeIntent.setIntent(intent);
+
+      List<RuntimeIntent> intents = new ArrayList<RuntimeIntent>();
+      intents.add(runtimeIntent);
+
+      // list workspaces
+
+      ListWorkspacesOptions listWorkspaceOptions = new ListWorkspacesOptions.Builder().build();
+
+      WorkspaceCollection workspaces = assistant.listWorkspaces(listWorkspaceOptions).execute().getResult();
+
+      System.out.println("List Workspaces: " + workspaces);
+
+      // workspace info
+
+      GetWorkspaceOptions getWorkspaceOptions = new GetWorkspaceOptions.Builder(workspaceId).build();
+
+      Workspace getWorkspaceResponse = assistant.getWorkspace(getWorkspaceOptions).execute().getResult();
+
+      System.out.println("Workspace info for workspace: " + workspaceId + ": " + getWorkspaceResponse);
+
+      // analyze text
+
+      String testText = "Hi";
+      pw.println("Analyzing text of: '" + testText + "'");
+
+      MessageInput input = new MessageInput();
+      input.setText(testText);
+
+      MessageOptions messageOptions = new MessageOptions.Builder(workspaceId).input(input).intents(intents).build();
+
+      MessageResponse messageResponse = assistant.message(messageOptions).execute().getResult();
+
+      System.out.println("Watson Analysis of the test text of: '" + testText + "' is: " + messageResponse);
+
+      if (messageResponse.toString().contains(intentName)) {
+        pw.println("PASS: Found the expected intent: '" + intentName + "' in the response");
       }
 
-      out.close();
-      in.close();
-      inputStream.close();
-      pw.println("Translation File test.wav created");
+      // delete workspace
+
+      DeleteWorkspaceOptions deleteWorkspaceOptions = new DeleteWorkspaceOptions.Builder(workspaceId).build();
+
+      assistant.deleteWorkspace(deleteWorkspaceOptions).execute();
 
     } catch (Exception e) {
       pw.println("FAIL: Unexpected error during test.");
@@ -59,17 +127,5 @@ public class TestRestController {
     }
     pw.flush();
     return sw.toString();
-  }
-
-  // get the wav file and download it to client system
-
-  @GetMapping(value = "/get", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-  public @ResponseBody byte[] getFile() throws IOException {
-    FileInputStream in = new FileInputStream("/tmp/test.wav");
-    if (in != null) {
-      return IOUtils.toByteArray(in);
-    } else {
-      throw new FileNotFoundException("/tmp/test.wav");
-    }
   }
 }

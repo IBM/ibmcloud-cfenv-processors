@@ -29,9 +29,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.ibm.watson.developer_cloud</groupId>
-			<artifactId>watson-spring-boot-starter</artifactId>
-			<version>0.3.0</version>
+			<groupId>com.github.tnixa</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.pivotal.cfenv</groupId>
@@ -44,6 +44,17 @@
 			<version>2.6</version>
 		</dependency>		
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+		<repository>
+			<id>ibm-cloud</id>
+			<url>https://dl.bintray.com/ibm-cloud-sdks/ibm-cloud-sdk-repo</url>
+		</repository>
+    </repositories>
 
 	<build>
 		<plugins>
