@@ -7,22 +7,23 @@ import io.pivotal.cfenv.core.CfService;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessor;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
-public class WatsonAssistantCfEnvProcessor implements CfEnvProcessor {
+public class WatsonLanguageTranslatorCfEnvProcessor implements CfEnvProcessor {
 
-    public WatsonAssistantCfEnvProcessor() {
-        System.out.println("WatsonAssistantCfEnvProcessor built");
+    public WatsonLanguageTranslatorCfEnvProcessor() {
+        System.out.println("WatsonLanguageTranslatorCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
-        boolean match = service.existsByLabelStartsWith("conversation");
+        boolean match = service.existsByLabelStartsWith("language_translator");
         System.out.println("Match [" + match + "] to service " + service.toString());
         return match;
     }
 
     @Override
     public CfEnvProcessorProperties getProperties() {
-        return CfEnvProcessorProperties.builder().propertyPrefixes("assistant").serviceName("Assistant").build();
+        return CfEnvProcessorProperties.builder().propertyPrefixes("language_translator")
+                .serviceName("Language_Translator").build();
     }
 
     @Override
@@ -30,9 +31,9 @@ public class WatsonAssistantCfEnvProcessor implements CfEnvProcessor {
         // set watsonVersion to date of the released watson spring boot starter
         // version 0.3.0 was released on 2018-06-22
         String watsonVersion = "2018-06-22";
-        properties.put("watson.assistant.url", cfCredentials.getUri("http"));
-        properties.put("watson.assistant.iam-api-key", cfCredentials.getString("apikey"));
-        properties.put("watson.assistant.versionDate", watsonVersion);
+        properties.put("watson.language-translator.url", cfCredentials.getUri("http"));
+        properties.put("watson.language-translator.iam-api-key", cfCredentials.getString("apikey"));
+        properties.put("watson.language-translator.versionDate", watsonVersion);
 
     }
 }
