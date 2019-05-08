@@ -3,13 +3,14 @@ package org.terrence.testapp.rest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.stream.Collectors;
-import com.ibm.watson.developer_cloud.discovery.v1.Discovery;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListCollectionsOptions;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListCollectionsResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListEnvironmentsOptions;
-import com.ibm.watson.developer_cloud.discovery.v1.model.ListEnvironmentsResponse;
-import com.ibm.watson.developer_cloud.discovery.v1.model.QueryOptions;
-import com.ibm.watson.developer_cloud.discovery.v1.model.QueryResponse;
+
+import com.ibm.watson.discovery.v1.Discovery;
+import com.ibm.watson.discovery.v1.model.ListEnvironmentsOptions;
+import com.ibm.watson.discovery.v1.model.ListEnvironmentsResponse;
+import com.ibm.watson.discovery.v1.model.ListCollectionsOptions;
+import com.ibm.watson.discovery.v1.model.ListCollectionsResponse;
+import com.ibm.watson.discovery.v1.model.QueryOptions;
+import com.ibm.watson.discovery.v1.model.QueryResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,8 @@ public class TestRestController {
       // list existing environments, should be a "system" environment by default
 
       ListEnvironmentsOptions listEnvironmentOptions = new ListEnvironmentsOptions.Builder().build();
-      ListEnvironmentsResponse listEnvironmentResponse = discovery.listEnvironments(listEnvironmentOptions).execute();
+      ListEnvironmentsResponse listEnvironmentResponse = discovery.listEnvironments(listEnvironmentOptions).execute()
+          .getResult();
       pw.println("Environments: ");
       pw.println(listEnvironmentResponse);
 
@@ -42,7 +44,8 @@ public class TestRestController {
 
       String environmentId = "system";
       ListCollectionsOptions listCollectionOptions = new ListCollectionsOptions.Builder(environmentId).build();
-      ListCollectionsResponse listCollectionsResponse = discovery.listCollections(listCollectionOptions).execute();
+      ListCollectionsResponse listCollectionsResponse = discovery.listCollections(listCollectionOptions).execute()
+          .getResult();
       pw.println("Collections: ");
       pw.println(listCollectionsResponse);
 
@@ -51,7 +54,7 @@ public class TestRestController {
       String query = "President";
       pw.println("Query for: '" + query + "' in the \"system\" environment and \"news-en\" collection...");
       QueryOptions options = new QueryOptions.Builder("system", "news-en").naturalLanguageQuery(query).build();
-      QueryResponse queryResponse = discovery.query(options).execute();
+      QueryResponse queryResponse = discovery.query(options).execute().getResult();
 
       // get results from query
       String results = queryResponse.getResults().stream().map(r -> (String) r.get("title"))
