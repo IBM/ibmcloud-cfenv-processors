@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.terrence</groupId>
-	<artifactId>testapp</artifactId>
+	<artifactId>cfenv-processor-watson-discovery</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>testapp</name>
-	<description>Demo project for Spring Boot</description>
+	<name>cfenv-processor-watson-discovery</name>
+	<description>A CfEnvProcessor Implementation for Watson Discovery</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -29,31 +29,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.ibm.watson.developer_cloud</groupId>
-			<artifactId>watson-spring-boot-starter</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
 			<groupId>io.pivotal.cfenv</groupId>
 			<artifactId>java-cfenv-boot</artifactId>
 			<version>1.0.0.RELEASE</version>
 		</dependency>		
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>ibm-cloud</id>
-			<url>https://dl.bintray.com/ibm-cloud-sdks/ibm-cloud-sdk-repo</url>
-		</repository>
-    </repositories>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
