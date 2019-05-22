@@ -2,19 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.terrence</groupId>
+	<artifactId>cfenv-big-repo</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1.BUILD-SNAPSHOT</version>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.terrence</groupId>
-	<artifactId>testapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>testapp</name>
-	<description>Demo project for Spring Boot</description>
 
 	<properties>
+		<springframework.version>2.1.4.RELEASE</springframework.version>
+		<io-pivotal-cfenv.version>1.0.0.RELEASE</io-pivotal-cfenv.version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -29,40 +32,16 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.github.tnixa</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-			<version>-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>io.pivotal.cfenv</groupId>
 			<artifactId>java-cfenv-boot</artifactId>
-			<version>1.0.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.6</version>
-		</dependency>		
+			<version>${io-pivotal-cfenv.version}</version>
+		</dependency>	
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-		<repository>
-			<id>ibm-cloud</id>
-			<url>https://dl.bintray.com/ibm-cloud-sdks/ibm-cloud-sdk-repo</url>
-		</repository>
-    </repositories>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+	<modules>
+		<module>cfenv-processor-db2</module>
+		<module>cfenv-processor-watson-assistant</module>
+		<module>cfenv-processor-watson-tone-analyzer</module>
+	</modules>
 
 </project>
