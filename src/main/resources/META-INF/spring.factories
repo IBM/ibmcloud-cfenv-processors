@@ -1,2 +1,1 @@
-io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  org.terrence.cfenvprocessors.watsondiscovery.WatsonDiscoveryCfEnvProcessor
+test
