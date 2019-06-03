@@ -1,6 +1,7 @@
 package org.terrence.cfenvprocessors.watsontoneanalyser;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
@@ -9,14 +10,16 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
 public class WatsonToneAnalyzerCfEnvProcessor implements CfEnvProcessor {
 
+    private static final Logger LOG = Logger.getLogger(WatsonToneAnalyzerCfEnvProcessor.class.getName());
+
     public WatsonToneAnalyzerCfEnvProcessor() {
-        System.out.println("WatsonToneAnalyzerCfEnvProcessor built");
+        LOG.info("WatsonToneAnalyzerCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("tone_analyzer");
-        System.out.println("Match [" + match + "] to service " + service.toString());
+        LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 

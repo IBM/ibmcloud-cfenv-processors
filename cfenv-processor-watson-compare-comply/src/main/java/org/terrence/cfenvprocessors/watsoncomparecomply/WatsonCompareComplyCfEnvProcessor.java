@@ -1,6 +1,7 @@
 package org.terrence.cfenvprocessors.watsoncomparecomply;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
@@ -9,14 +10,16 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
 public class WatsonCompareComplyCfEnvProcessor implements CfEnvProcessor {
 
+    private static final Logger LOG = Logger.getLogger(WatsonCompareComplyCfEnvProcessor.class.getName());
+
     public WatsonCompareComplyCfEnvProcessor() {
-        System.out.println("WatsonCompareComplyCfEnvProcessor built");
+        LOG.info("WatsonCompareComplyCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("compare-comply");
-        System.out.println("Match [" + match + "] to service " + service.toString());
+        LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 

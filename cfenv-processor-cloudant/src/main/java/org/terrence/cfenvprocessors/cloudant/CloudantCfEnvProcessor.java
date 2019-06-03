@@ -1,6 +1,7 @@
 package org.terrence.cfenvprocessors.cloudant;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
@@ -9,14 +10,16 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
 public class CloudantCfEnvProcessor implements CfEnvProcessor {
 
+    private static final Logger LOG = Logger.getLogger(CloudantCfEnvProcessor.class.getName());
+
     public CloudantCfEnvProcessor() {
-        System.out.println("CloudantCfEnvProcessor built");
+        LOG.info("CloudantCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("cloudantNoSQLDB");
-        System.out.println("Match [" + match + "] to service " + service.toString());
+        LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 

@@ -1,6 +1,7 @@
 package org.terrence.cfenvprocessors.watsonnaturallanguageunderstanding;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
@@ -9,14 +10,17 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
 public class WatsonNaturalLanguageUnderstandingCfEnvProcessor implements CfEnvProcessor {
 
+    private static final Logger LOG = Logger
+            .getLogger(WatsonNaturalLanguageUnderstandingCfEnvProcessor.class.getName());
+
     public WatsonNaturalLanguageUnderstandingCfEnvProcessor() {
-        System.out.println("WatsonNaturalLanguageUnderstandingCfEnvProcessor built");
+        LOG.info("WatsonNaturalLanguageUnderstandingCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("natural-language-understanding");
-        System.out.println("Match [" + match + "] to service " + service.toString());
+        LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 

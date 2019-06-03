@@ -1,6 +1,7 @@
 package org.terrence.cfenvprocessors.watsontexttospeech;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
@@ -9,14 +10,16 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
 public class WatsonTextToSpeechCfEnvProcessor implements CfEnvProcessor {
 
+    private static final Logger LOG = Logger.getLogger(WatsonTextToSpeechCfEnvProcessor.class.getName());
+
     public WatsonTextToSpeechCfEnvProcessor() {
-        System.out.println("WatsonTextToSpeechCfEnvProcessor built");
+        LOG.info("WatsonTextToSpeechCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("text_to_speech");
-        System.out.println("Match [" + match + "] to service " + service.toString());
+        LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 
