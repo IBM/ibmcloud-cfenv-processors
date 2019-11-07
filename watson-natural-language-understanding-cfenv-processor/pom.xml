@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ibm.cloud</groupId>
-		<artifactId>cfenv-processor</artifactId>
+		<artifactId>cfenv-processor-parent</artifactId>
 		<version>0.0.1.BUILD-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>cfenv-processor-watson-speech-to-text</artifactId>
+	<artifactId>cfenv-processor-watson-natural-language-understanding</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cfenv-processor-watson-speech-to-text</name>
-	<description>A CfEnvProcessor Implementation for Watson Speech To Text</description>
+	<name>cfenv-processor-watson-natural-language-understanding</name>
+	<description>A CfEnvProcessor Implementation for Watson Natural Language Understanding</description>
 
 </project>

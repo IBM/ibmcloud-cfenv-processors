@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ibm.cloud</groupId>
-		<artifactId>cfenv-processor</artifactId>
+		<artifactId>cfenv-processor-parent</artifactId>
 		<version>0.0.1.BUILD-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>cfenv-processor-watson-text-to-speech</artifactId>
+	<artifactId>cfenv-processor-watson-compare-comply</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cfenv-processor-watson-text-to-speech</name>
-	<description>A CfEnvProcessor Implementation for Watson Text to Speech</description>
+	<name>cfenv-processor-watson-compare-comply</name>
+	<description>A CfEnvProcessor Implementation for Watson Compare and Comply</description>
 
 </project>

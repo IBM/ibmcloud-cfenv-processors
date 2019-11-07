@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ibm.cloud</groupId>
-		<artifactId>cfenv-processor</artifactId>
+		<artifactId>cfenv-processor-parent</artifactId>
 		<version>0.0.1.BUILD-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>cfenv-processor-watson-visual-recognition</artifactId>
+	<artifactId>cfenv-processor-watson-natural-language-classifier</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cfenv-processor-watson-visual-recognition</name>
-	<description>A CfEnvProcessor Implementation for Watson Visual Recognition</description>
+	<name>cfenv-processor-watson-natural-language-classifier</name>
+	<description>A CfEnvProcessor Implementation for Watson Natural Language Classifier</description>
 
 </project>

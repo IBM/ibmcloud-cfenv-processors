@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ibm.cloud</groupId>
-		<artifactId>cfenv-processor</artifactId>
+		<artifactId>cfenv-processor-parent</artifactId>
 		<version>0.0.1.BUILD-SNAPSHOT</version>
 	</parent>
-
+	
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>cfenv-processor-watson-natural-language-classifier</artifactId>
+	<artifactId>cfenv-processor-db2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cfenv-processor-watson-natural-language-classifier</name>
-	<description>A CfEnvProcessor Implementation for Watson Natural Language Classifier</description>
+	<name>cfenv-processor-db2</name>
+	<description>A CfEnvProcessor Implementation for DB2</description>
 
 </project>

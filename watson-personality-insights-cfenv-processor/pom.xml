@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ibm.cloud</groupId>
-		<artifactId>cfenv-processor</artifactId>
+		<artifactId>cfenv-processor-parent</artifactId>
 		<version>0.0.1.BUILD-SNAPSHOT</version>
 	</parent>
-	
+
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>cfenv-processor-db2</artifactId>
+	<artifactId>cfenv-processor-watson-personality-insights</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cfenv-processor-db2</name>
-	<description>A CfEnvProcessor Implementation for DB2</description>
+	<name>cfenv-processor-watson-personality-insights</name>
+	<description>A CfEnvProcessor Implementation for Watson Personality Insights</description>
 
 </project>
