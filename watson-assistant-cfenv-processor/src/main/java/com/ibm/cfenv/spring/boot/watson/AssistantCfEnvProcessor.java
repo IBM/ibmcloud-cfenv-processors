@@ -1,18 +1,18 @@
-package com.ibm.cfenv.spring.boot.watsonassistant;
-
-import java.util.Map;
-import java.util.logging.Logger;
+package com.ibm.cfenv.spring.boot.watson;
 
 import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessor;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
-public class WatsonAssistantCfEnvProcessor implements CfEnvProcessor {
+import java.util.Map;
+import java.util.logging.Logger;
 
-    private static final Logger LOG = Logger.getLogger(WatsonAssistantCfEnvProcessor.class.getName());
+public class AssistantCfEnvProcessor implements CfEnvProcessor {
 
-    public WatsonAssistantCfEnvProcessor() {
+    private static final Logger LOG = Logger.getLogger(AssistantCfEnvProcessor.class.getName());
+
+    public AssistantCfEnvProcessor() {
         LOG.info("WatsonAssistantCfEnvProcessor built");
     }
 

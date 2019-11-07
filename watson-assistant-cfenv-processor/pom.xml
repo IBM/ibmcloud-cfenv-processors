@@ -9,9 +9,9 @@
     </parent>
 
     <groupId>com.ibm.cloud</groupId>
-    <artifactId>watson-assistant-cfenv-processor</artifactId>
+    <artifactId>watson-cfenv-processor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>watson-assistant-cfenv-processor</name>
-    <description>A CfEnvProcessor Implementation for Watson Assistant</description>
+    <name>watson-cfenv-processor</name>
+    <description>CfEnvProcessor implementations for Watson products</description>
 
 </project>
