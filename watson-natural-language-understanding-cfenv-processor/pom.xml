@@ -9,9 +9,9 @@
 	</parent>
 
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>cfenv-processor-watson-natural-language-understanding</artifactId>
+	<artifactId>watson-natural-language-understanding-cfenv-processor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cfenv-processor-watson-natural-language-understanding</name>
+	<name>watson-natural-language-understanding-cfenv-processor</name>
 	<description>A CfEnvProcessor Implementation for Watson Natural Language Understanding</description>
 
 </project>
