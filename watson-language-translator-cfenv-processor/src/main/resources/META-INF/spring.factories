@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  org.terrence.cfenvprocessors.watsonlanguagetranslator.WatsonLanguageTranslatorCfEnvProcessor
+  com.ibm.boot.cfenvprocessors.watsonlanguagetranslator.WatsonLanguageTranslatorCfEnvProcessor

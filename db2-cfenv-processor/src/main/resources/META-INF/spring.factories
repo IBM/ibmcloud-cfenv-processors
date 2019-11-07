@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  org.terrence.cfenvprocessors.db2.DB2CfEnvProcessor
+  com.ibm.boot.cfenvprocessors.db2.DB2CfEnvProcessor

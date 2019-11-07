@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  org.terrence.cfenvprocessors.watsonvisualrecognition.WatsonVisualRecognitionCfEnvProcessor
+  com.ibm.boot.cfenvprocessors.watsonvisualrecognition.WatsonVisualRecognitionCfEnvProcessor

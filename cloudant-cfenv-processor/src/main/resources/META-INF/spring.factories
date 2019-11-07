@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  org.terrence.cfenvprocessors.cloudant.CloudantCfEnvProcessor
+  com.ibm.boot.cfenvprocessors.cloudant.CloudantCfEnvProcessor

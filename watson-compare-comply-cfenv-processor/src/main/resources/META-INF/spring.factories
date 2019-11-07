@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  org.terrence.cfenvprocessors.watsoncomparecomply.WatsonCompareComplyCfEnvProcessor
+  com.ibm.boot.cfenvprocessors.watsoncomparecomply.WatsonCompareComplyCfEnvProcessor
