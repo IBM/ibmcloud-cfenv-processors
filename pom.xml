@@ -11,13 +11,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
+        <version>2.2.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
-        <springframework.version>2.1.4.RELEASE</springframework.version>
-        <io-pivotal-cfenv.version>1.0.0.RELEASE</io-pivotal-cfenv.version>
+        <springframework.version>2.2.0.RELEASE</springframework.version>
+        <io-pivotal-cfenv.version>1.1.1.RELEASE</io-pivotal-cfenv.version>
         <java.version>1.8</java.version>
     </properties>
 
@@ -39,19 +39,8 @@
     </dependencies>
 
     <modules>
-        <module>cloudant-cfenv-processor</module>
-        <module>db2-cfenv-processor</module>
-        <module>watson-assistant-cfenv-processor</module>
-        <module>watson-compare-comply-cfenv-processor</module>
-        <module>watson-discovery-cfenv-processor</module>
-        <module>watson-language-translator-cfenv-processor</module>
-        <module>watson-natural-language-classifier-cfenv-processor</module>
-        <module>watson-natural-language-understanding-cfenv-processor</module>
-        <module>watson-personality-insights-cfenv-processor</module>
-        <module>watson-speech-to-text-cfenv-processor</module>
-        <module>watson-text-to-speech-cfenv-processor</module>
-        <module>watson-tone-analyzer-cfenv-processor</module>
-        <module>watson-visual-recognition-cfenv-processor</module>
+        <module>data-cfenv-processor</module>
+        <module>watson-cfenv-processor</module>
     </modules>
 
 </project>

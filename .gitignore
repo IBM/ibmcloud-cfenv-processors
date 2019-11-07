@@ -4,20 +4,6 @@ target
 
 !.mvn/wrapper/maven-wrapper.jar
 
-#cfenv-processor-cloudant/target/
-#cfenv-processor-db2/target/
-#cfenv-processor-watson-assistant/target/
-#cfenv-processor-watson-compare-comply/target/
-#cfenv-processor-watson-discovery/target/
-#cfenv-processor-watson-language-translator/target/
-#cfenv-processor-watson-natural-language-classifier/target/
-#cfenv-processor-watson-natural-language-understanding/target/
-#cfenv-processor-watson-personality-insights/target/
-#cfenv-processor-watson-speech-to-text/target/
-#cfenv-processor-watson-text-to-speech/target/
-#cfenv-processor-watson-tone-analyzer/target/
-#cfenv-processor-watson-visual-recognition/target/
-
 ### STS ###
 .apt_generated
 .classpath
