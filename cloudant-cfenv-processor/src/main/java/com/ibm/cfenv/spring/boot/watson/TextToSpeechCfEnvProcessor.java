@@ -8,11 +8,11 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonTextToSpeechCfEnvProcessor implements CfEnvProcessor {
+public class TextToSpeechCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(WatsonTextToSpeechCfEnvProcessor.class.getName());
+    private static final Logger LOG = Logger.getLogger(TextToSpeechCfEnvProcessor.class.getName());
 
-    public WatsonTextToSpeechCfEnvProcessor() {
+    public TextToSpeechCfEnvProcessor() {
         LOG.info("WatsonTextToSpeechCfEnvProcessor built");
     }
 

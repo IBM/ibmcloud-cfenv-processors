@@ -8,11 +8,11 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonCompareComplyCfEnvProcessor implements CfEnvProcessor {
+public class CompareComplyCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(WatsonCompareComplyCfEnvProcessor.class.getName());
+    private static final Logger LOG = Logger.getLogger(CompareComplyCfEnvProcessor.class.getName());
 
-    public WatsonCompareComplyCfEnvProcessor() {
+    public CompareComplyCfEnvProcessor() {
         LOG.info("WatsonCompareComplyCfEnvProcessor built");
     }
 

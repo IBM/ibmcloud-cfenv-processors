@@ -8,25 +8,25 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonLanguageTranslatorCfEnvProcessor implements CfEnvProcessor {
+public class ToneAnalyzerCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(WatsonLanguageTranslatorCfEnvProcessor.class.getName());
+    private static final Logger LOG = Logger.getLogger(ToneAnalyzerCfEnvProcessor.class.getName());
 
-    public WatsonLanguageTranslatorCfEnvProcessor() {
-        LOG.info("WatsonLanguageTranslatorCfEnvProcessor built");
+    public ToneAnalyzerCfEnvProcessor() {
+        LOG.info("WatsonToneAnalyzerCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
-        boolean match = service.existsByLabelStartsWith("language_translator");
+        boolean match = service.existsByLabelStartsWith("tone_analyzer");
         LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 
     @Override
     public CfEnvProcessorProperties getProperties() {
-        return CfEnvProcessorProperties.builder().propertyPrefixes("language_translator")
-                .serviceName("Language_Translator").build();
+        return CfEnvProcessorProperties.builder().propertyPrefixes("tone_analyzer").serviceName("Tone_Analyzer")
+                .build();
     }
 
     @Override
@@ -34,9 +34,9 @@ public class WatsonLanguageTranslatorCfEnvProcessor implements CfEnvProcessor {
         // set watsonVersion to date of the released watson spring boot starter
         // version 1.0.0 was released on 2019-05-07
         String watsonVersion = "2019-05-07";
-        properties.put("watson.language-translator.url", cfCredentials.getUri("http"));
-        properties.put("watson.language-translator.iam-api-key", cfCredentials.getString("apikey"));
-        properties.put("watson.language-translator.versionDate", watsonVersion);
+        properties.put("watson.tone-analyzer.url", cfCredentials.getUri("http"));
+        properties.put("watson.tone-analyzer.iam-api-key", cfCredentials.getString("apikey"));
+        properties.put("watson.tone-analyzer.versionDate", watsonVersion);
 
     }
 }

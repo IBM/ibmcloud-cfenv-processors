@@ -8,11 +8,11 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonDiscoveryCfEnvProcessor implements CfEnvProcessor {
+public class DiscoveryCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(WatsonDiscoveryCfEnvProcessor.class.getName());
+    private static final Logger LOG = Logger.getLogger(DiscoveryCfEnvProcessor.class.getName());
 
-    public WatsonDiscoveryCfEnvProcessor() {
+    public DiscoveryCfEnvProcessor() {
         LOG.info("WatsonDiscoveryCfEnvProcessor built");
     }
 

@@ -8,25 +8,25 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonToneAnalyzerCfEnvProcessor implements CfEnvProcessor {
+public class VisualRecognitionCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(WatsonToneAnalyzerCfEnvProcessor.class.getName());
+    private static final Logger LOG = Logger.getLogger(VisualRecognitionCfEnvProcessor.class.getName());
 
-    public WatsonToneAnalyzerCfEnvProcessor() {
-        LOG.info("WatsonToneAnalyzerCfEnvProcessor built");
+    public VisualRecognitionCfEnvProcessor() {
+        LOG.info("WatsonVisualRecognitionCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
-        boolean match = service.existsByLabelStartsWith("tone_analyzer");
+        boolean match = service.existsByLabelStartsWith("watson_vision_combined");
         LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 
     @Override
     public CfEnvProcessorProperties getProperties() {
-        return CfEnvProcessorProperties.builder().propertyPrefixes("tone_analyzer").serviceName("Tone_Analyzer")
-                .build();
+        return CfEnvProcessorProperties.builder().propertyPrefixes("watson_vision_combined")
+                .serviceName("Watson_Vision_Combined").build();
     }
 
     @Override
@@ -34,9 +34,9 @@ public class WatsonToneAnalyzerCfEnvProcessor implements CfEnvProcessor {
         // set watsonVersion to date of the released watson spring boot starter
         // version 1.0.0 was released on 2019-05-07
         String watsonVersion = "2019-05-07";
-        properties.put("watson.tone-analyzer.url", cfCredentials.getUri("http"));
-        properties.put("watson.tone-analyzer.iam-api-key", cfCredentials.getString("apikey"));
-        properties.put("watson.tone-analyzer.versionDate", watsonVersion);
+        properties.put("watson.visual-recognition.url", cfCredentials.getUri("http"));
+        properties.put("watson.visual-recognition.iam-api-key", cfCredentials.getString("apikey"));
+        properties.put("watson.visual-recognition.versionDate", watsonVersion);
 
     }
 }

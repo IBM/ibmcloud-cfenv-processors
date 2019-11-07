@@ -8,12 +8,12 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonNaturalLanguageUnderstandingCfEnvProcessor implements CfEnvProcessor {
+public class NaturalLanguageUnderstandingCfEnvProcessor implements CfEnvProcessor {
 
     private static final Logger LOG = Logger
-            .getLogger(WatsonNaturalLanguageUnderstandingCfEnvProcessor.class.getName());
+            .getLogger(NaturalLanguageUnderstandingCfEnvProcessor.class.getName());
 
-    public WatsonNaturalLanguageUnderstandingCfEnvProcessor() {
+    public NaturalLanguageUnderstandingCfEnvProcessor() {
         LOG.info("WatsonNaturalLanguageUnderstandingCfEnvProcessor built");
     }
 

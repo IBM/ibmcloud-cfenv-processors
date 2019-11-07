@@ -8,11 +8,11 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonNaturalLanguageClassifierCfEnvProcessor implements CfEnvProcessor {
+public class NaturalLanguageClassifierCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(WatsonNaturalLanguageClassifierCfEnvProcessor.class.getName());
+    private static final Logger LOG = Logger.getLogger(NaturalLanguageClassifierCfEnvProcessor.class.getName());
 
-    public WatsonNaturalLanguageClassifierCfEnvProcessor() {
+    public NaturalLanguageClassifierCfEnvProcessor() {
         LOG.info("WatsonNaturalLanguageClassifierCfEnvProcessor built");
     }
 

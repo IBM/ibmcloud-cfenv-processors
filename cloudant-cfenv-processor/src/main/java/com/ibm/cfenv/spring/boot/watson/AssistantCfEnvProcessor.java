@@ -8,25 +8,24 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class WatsonPersonalityInsightsCfEnvProcessor implements CfEnvProcessor {
+public class AssistantCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(WatsonPersonalityInsightsCfEnvProcessor.class.getName());
+    private static final Logger LOG = Logger.getLogger(AssistantCfEnvProcessor.class.getName());
 
-    public WatsonPersonalityInsightsCfEnvProcessor() {
-        LOG.info("WatsonPersonalityInsightsCfEnvProcessor built");
+    public AssistantCfEnvProcessor() {
+        LOG.info("WatsonAssistantCfEnvProcessor built");
     }
 
     @Override
     public boolean accept(CfService service) {
-        boolean match = service.existsByLabelStartsWith("personality_insights");
+        boolean match = service.existsByLabelStartsWith("conversation");
         LOG.info("Match [" + match + "] to service " + service.toString());
         return match;
     }
 
     @Override
     public CfEnvProcessorProperties getProperties() {
-        return CfEnvProcessorProperties.builder().propertyPrefixes("personality_insights")
-                .serviceName("Personality_Insights").build();
+        return CfEnvProcessorProperties.builder().propertyPrefixes("assistant").serviceName("Assistant").build();
     }
 
     @Override
@@ -34,9 +33,9 @@ public class WatsonPersonalityInsightsCfEnvProcessor implements CfEnvProcessor {
         // set watsonVersion to date of the released watson spring boot starter
         // version 1.0.0 was released on 2019-05-07
         String watsonVersion = "2018-05-07";
-        properties.put("watson.personality-insights.url", cfCredentials.getUri("http"));
-        properties.put("watson.personality-insights.iam-api-key", cfCredentials.getString("apikey"));
-        properties.put("watson.personality-insights.versionDate", watsonVersion);
+        properties.put("watson.assistant.url", cfCredentials.getUri("http"));
+        properties.put("watson.assistant.iam-api-key", cfCredentials.getString("apikey"));
+        properties.put("watson.assistant.versionDate", watsonVersion);
 
     }
 }
