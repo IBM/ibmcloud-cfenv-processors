@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  com.ibm.boot.cfenvprocessors.watsontoneanalyser.WatsonToneAnalyzerCfEnvProcessor
+  com.ibm.cfenv.spring.boot.watsontoneanalyser.WatsonToneAnalyzerCfEnvProcessor

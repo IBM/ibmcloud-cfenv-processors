@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  com.ibm.boot.cfenvprocessors.watsonpersonalityinsights.WatsonPersonalityInsightsCfEnvProcessor
+  com.ibm.cfenv.spring.boot.watsonpersonalityinsights.WatsonPersonalityInsightsCfEnvProcessor

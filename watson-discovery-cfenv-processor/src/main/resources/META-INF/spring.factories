@@ -1,2 +1,2 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  com.ibm.boot.cfenvprocessors.watsondiscovery.WatsonDiscoveryCfEnvProcessor
+  com.ibm.cfenv.spring.boot.watsondiscovery.WatsonDiscoveryCfEnvProcessor
