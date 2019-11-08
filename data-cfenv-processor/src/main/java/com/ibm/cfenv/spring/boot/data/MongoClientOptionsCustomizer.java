@@ -26,14 +26,10 @@ import javax.net.ssl.SSLContext;
 @AutoConfigureAfter({ExtensibleTypedBeanProcessor.class, SslcontextConfig.class})
 public class MongoClientOptionsCustomizer implements BeanCustomizer {
 
-    private final String ctxName;
-    private final ApplicationContext applicationContext;
     private final SSLContext sslContext;
 
     public MongoClientOptionsCustomizer(@Value("${cfenv.processor.icdmongo.sslcontext}") String ctxName,
                                         ApplicationContext applicationContext) {
-        this.ctxName = ctxName;
-        this.applicationContext = applicationContext;
         this.sslContext = applicationContext.getBean(ctxName, SSLContext.class);
     }
 
