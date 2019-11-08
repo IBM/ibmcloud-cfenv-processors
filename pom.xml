@@ -24,8 +24,13 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.pivotal.cfenv</groupId>
             <artifactId>java-cfenv-boot</artifactId>
@@ -41,6 +46,8 @@
     <modules>
         <module>data-cfenv-processor</module>
         <module>watson-cfenv-processor</module>
+        <module>bean-customizer-spring-boot</module>
+        <module>ssl-context-spring-boot-starter</module>
     </modules>
 
 </project>

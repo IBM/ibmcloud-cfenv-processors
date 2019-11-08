@@ -1,2 +1,11 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  com.ibm.cfenv.spring.boot.watsonassistant.WatsonAssistantCfEnvProcessor
+  com.ibm.cfenv.spring.boot.watson.AssistantCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.CompareComplyCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.DiscoveryCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.LanguageTranslatorCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.NaturalLanguageClassifierCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.NaturalLanguageUnderstandingCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.PersonalityInsightsCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.TextToSpeechCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.ToneAnalyzerCfEnvProcessor, \
+  com.ibm.cfenv.spring.boot.watson.VisualRecognitionCfEnvProcessor
