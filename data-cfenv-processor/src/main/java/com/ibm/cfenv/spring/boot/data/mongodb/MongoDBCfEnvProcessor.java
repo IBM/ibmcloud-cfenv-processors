@@ -1,4 +1,4 @@
-package com.ibm.cfenv.spring.boot.data;
+package com.ibm.cfenv.spring.boot.data.mongodb;
 
 import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;

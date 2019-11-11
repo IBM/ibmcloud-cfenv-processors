@@ -1,17 +1,15 @@
-package com.ibm.cfenv.spring.boot.data;
+package com.ibm.cfenv.spring.boot.data.mongodb;
 
+import com.ibm.cfenv.spring.boot.data.mongodb.MongoDBCfEnvProcessor;
 import io.pivotal.cfenv.core.CfCredentials;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MongoDBCfEnvProcessorTest {
 

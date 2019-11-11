@@ -1,5 +1,6 @@
-package com.ibm.cfenv.spring.boot.data;
+package com.ibm.cfenv.spring.boot.data.mongodb;
 
+import com.ibm.cfenv.spring.boot.data.mongodb.MongoClientOptionsCustomizer;
 import com.mongodb.MongoClientOptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,10 @@ class MongoClientOptionsCustomizerTest {
                     throw new Exception();
                 });
         assertThrows(FatalBeanException.class, () -> mongoClientOptionsCustomizer.postProcessBeforeInit(mongoClientOptions));
+    }
+
+    @Test
+    public void doOnlyMongoClientOptions() {
+        assertThat(mongoClientOptionsCustomizer.postProcessBeforeInit("test")).isEqualTo("test");
     }
 }

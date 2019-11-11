@@ -25,7 +25,10 @@ public class CloudantCfEnvProcessor implements CfEnvProcessor {
 
     @Override
     public CfEnvProcessorProperties getProperties() {
-        return CfEnvProcessorProperties.builder().propertyPrefixes("cloudant").serviceName("Cloudant").build();
+        return CfEnvProcessorProperties.builder()
+                .propertyPrefixes("cloudant")
+                .serviceName("Cloudant")
+                .build();
     }
 
     @Override
