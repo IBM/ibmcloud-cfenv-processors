@@ -50,10 +50,18 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
 
         Map<String, String> certificate = (Map<String, String>) amqps.get("certificate");
         String certificate_base64 = certificate.get("certificate_base64");
+//        properties.put("sslcontext.enabled", true);
+        properties.put("sslcontext.contexts.amqp.trustedcert", certificate_base64);
+
+//        properties.put("cfenv.processor.icdamqp.enabled", true);
+//        properties.put("cfenv.processor.icdamqp.sslcontext", "amqp");
     }
 
     @Override
     public CfEnvProcessorProperties getProperties() {
-        return null;
+        return CfEnvProcessorProperties.builder()
+                .propertyPrefixes("cfenv.processor.icdamqp,sslcontext,spring.rabbitmq")
+                .serviceName("rabbitMQ")
+                .build();
     }
 }

@@ -1,9 +1,9 @@
 package com.ibm.cfenv.spring.boot.data.mongodb;
 
 import com.mongodb.MongoClientOptions;
-import org.ozzy.beancustomizer.config.BeanCustomizer;
-import org.ozzy.beancustomizer.config.ExtensibleTypedBeanProcessor;
-import org.ozzy.sslcontext.config.SslcontextConfig;
+import com.ibm.beancustomizer.config.BeanCustomizer;
+import com.ibm.beancustomizer.config.ExtensibleTypedBeanProcessor;
+import com.ibm.sslcontext.config.SslcontextConfig;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,19 +40,15 @@ public class MongoClientOptionsCustomizer implements BeanCustomizer {
 
     @Override
     public Object postProcessBeforeInit(Object original) {
-        Object result = original;
-        if (original instanceof MongoClientOptions) {
-            try {
-                MongoClientOptions o = (MongoClientOptions) original;
-                result = MongoClientOptions.builder(o)
-                        .sslEnabled(true)
-                        .sslContext(sslContext)
-                        .build();
-            } catch (Exception e) {
-                throw new FatalBeanException("Unable to add SSL to MongoOptions bean", e);
-            }
+        try {
+            MongoClientOptions o = (MongoClientOptions) original;
+            return MongoClientOptions.builder(o)
+                    .sslEnabled(true)
+                    .sslContext(sslContext)
+                    .build();
+        } catch (Exception e) {
+            throw new FatalBeanException("Unable to add SSL to MongoOptions bean", e);
         }
-        return result;
     }
 
     @Override
