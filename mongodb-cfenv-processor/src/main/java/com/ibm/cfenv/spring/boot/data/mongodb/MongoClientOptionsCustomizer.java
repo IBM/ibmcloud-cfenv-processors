@@ -1,9 +1,9 @@
 package com.ibm.cfenv.spring.boot.data.mongodb;
 
-import com.mongodb.MongoClientOptions;
 import com.ibm.beancustomizer.config.BeanCustomizer;
 import com.ibm.beancustomizer.config.ExtensibleTypedBeanProcessor;
 import com.ibm.sslcontext.config.SslcontextConfig;
+import com.mongodb.MongoClientOptions;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +24,7 @@ import javax.net.ssl.SSLContext;
 @Configuration
 @ConditionalOnProperty(name = "cfenv.processor.icdmongo.enabled", havingValue = "true")
 @AutoConfigureAfter({ExtensibleTypedBeanProcessor.class, SslcontextConfig.class})
+// TODO We can possibly remove the @AutoConfigureAfter({ExtensibleTypedBeanProcessor.class, SslcontextConfig.class}) annotation
 public class MongoClientOptionsCustomizer implements BeanCustomizer {
 
     private final SSLContext sslContext;
@@ -35,7 +36,7 @@ public class MongoClientOptionsCustomizer implements BeanCustomizer {
 
     @Override
     public Class getType() {
-        return MongoClientOptions.class;
+        return Object.class;
     }
 
     @Override

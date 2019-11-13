@@ -3,6 +3,7 @@ package com.ibm.cfenv.spring.boot.data.amqp;
 import com.ibm.beancustomizer.config.BeanCustomizer;
 import com.rabbitmq.client.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.net.ssl.SSLContext;
 import java.util.Map;
@@ -11,6 +12,7 @@ public class AmqpOptionsBeanCustomizer implements BeanCustomizer {
 
     private final Map<String, SSLContext> sslContexts;
 
+    @Autowired(required = false)
     public AmqpOptionsBeanCustomizer(Map<String, SSLContext> sslContexts) {
         this.sslContexts = sslContexts;
     }

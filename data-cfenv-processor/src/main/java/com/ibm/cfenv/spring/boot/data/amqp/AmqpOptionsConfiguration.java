@@ -12,8 +12,6 @@ import java.util.Map;
  * cfenv.processor.icdmongo.sslcontext=name-of-sslcontext-bean
  */
 @Configuration
-//@ConditionalOnProperty(name = "cfenv.processor.icdamqp.enabled", havingValue = "true")
-//@AutoConfigureAfter({SslcontextConfig.class})
 public class AmqpOptionsConfiguration {
 
     @Bean

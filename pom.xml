@@ -17,8 +17,6 @@
 
     <properties>
         <io-pivotal-cfenv.version>1.1.1.RELEASE</io-pivotal-cfenv.version>
-<!--        <springframework.version>2.2.0.RELEASE</springframework.version>-->
-<!--        <java.version>1.8</java.version>-->
     </properties>
 
     <dependencies>
@@ -26,24 +24,32 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>io.pivotal.cfenv</groupId>
             <artifactId>java-cfenv-boot</artifactId>
             <version>${io-pivotal-cfenv.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.pivotal.cfenv</groupId>
+            <artifactId>java-cfenv-test-support</artifactId>
+            <version>${io-pivotal-cfenv.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <modules>
         <module>data-cfenv-processor</module>
+        <module>mongodb-cfenv-processor</module>
         <module>watson-cfenv-processor</module>
         <module>bean-customizer-spring-boot</module>
         <module>ssl-context-spring-boot-starter</module>
+        <module>demo</module>
     </modules>
 
 </project>
