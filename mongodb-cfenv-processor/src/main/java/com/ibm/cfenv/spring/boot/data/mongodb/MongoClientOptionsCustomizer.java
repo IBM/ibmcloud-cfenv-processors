@@ -4,7 +4,6 @@ import com.ibm.beancustomizer.config.BeanCustomizer;
 import com.ibm.beancustomizer.config.ExtensibleTypedBeanProcessor;
 import com.ibm.sslcontext.SslcontextConfig;
 import com.mongodb.MongoClientOptions;
-import org.springframework.beans.FatalBeanException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -24,8 +23,7 @@ import javax.net.ssl.SSLContext;
 @Configuration
 @ConditionalOnProperty(name = "cfenv.processor.icdmongo.enabled", havingValue = "true")
 @AutoConfigureAfter({ExtensibleTypedBeanProcessor.class, SslcontextConfig.class})
-// TODO We can possibly remove the @AutoConfigureAfter({ExtensibleTypedBeanProcessor.class, SslcontextConfig.class}) annotation
-public class MongoClientOptionsCustomizer implements BeanCustomizer {
+public class MongoClientOptionsCustomizer implements BeanCustomizer<MongoClientOptions> {
 
     private final SSLContext sslContext;
 
@@ -35,26 +33,21 @@ public class MongoClientOptionsCustomizer implements BeanCustomizer {
     }
 
     @Override
-    public Class getType() {
-        return MongoClientOptions.class;
+    public MongoClientOptions postProcessBeforeInit(MongoClientOptions original) {
+        return MongoClientOptions.builder(original)
+                .sslContext(sslContext)
+                .sslEnabled(true)
+                .build();
     }
 
     @Override
-    public Object postProcessBeforeInit(Object original) {
-        try {
-            MongoClientOptions o = (MongoClientOptions) original;
-            return MongoClientOptions.builder(o)
-                    .sslEnabled(true)
-                    .sslContext(sslContext)
-                    .build();
-        } catch (Exception e) {
-            throw new FatalBeanException("Unable to add SSL to MongoOptions bean", e);
-        }
-    }
-
-    @Override
-    public Object postProcessAfterInit(Object original) {
+    public MongoClientOptions postProcessAfterInit(MongoClientOptions original) {
         return original;
+    }
+
+    @Override
+    public boolean accepts(Object bean, String beanName) {
+        return false;
     }
 
     @Bean

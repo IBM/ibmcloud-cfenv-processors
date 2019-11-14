@@ -7,10 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import javax.net.ssl.SSLContext;
 import java.util.Map;
 
-/**
- * Expects cfenv.processor.icdmongo.enabled=true
- * cfenv.processor.icdmongo.sslcontext=name-of-sslcontext-bean
- */
 @Configuration
 public class AmqpOptionsConfiguration {
 

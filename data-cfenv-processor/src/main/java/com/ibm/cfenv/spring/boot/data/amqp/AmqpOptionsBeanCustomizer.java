@@ -6,37 +6,42 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.net.ssl.SSLContext;
+import java.util.HashMap;
 import java.util.Map;
 
-public class AmqpOptionsBeanCustomizer implements BeanCustomizer {
+public class AmqpOptionsBeanCustomizer implements BeanCustomizer<CachingConnectionFactory> {
 
     private final Map<String, SSLContext> sslContexts;
 
     @Autowired(required = false)
     public AmqpOptionsBeanCustomizer(Map<String, SSLContext> sslContexts) {
-        this.sslContexts = sslContexts;
+        if (sslContexts == null) {
+            this.sslContexts = new HashMap<>();
+        } else {
+            this.sslContexts = sslContexts;
+        }
     }
 
     @Override
-    public Class getType() {
-        return CachingConnectionFactory.class;
-    }
-
-    @Override
-    public Object postProcessBeforeInit(Object original) {
-        Object result = original;
+    public CachingConnectionFactory postProcessBeforeInit(CachingConnectionFactory original) {
+        CachingConnectionFactory cachingConnectionFactory = original;
         if (sslContexts.containsKey("amqp")) {
             SSLContext sslContext = sslContexts.get("amqp");
-            CachingConnectionFactory cachingConnectionFactory = (CachingConnectionFactory) original;
             ConnectionFactory connectionFactory = cachingConnectionFactory.getRabbitConnectionFactory();
             connectionFactory.useSslProtocol(sslContext);
             connectionFactory.enableHostnameVerification();
         }
-        return result;
+        return cachingConnectionFactory;
     }
 
     @Override
-    public Object postProcessAfterInit(Object original) {
+    public CachingConnectionFactory postProcessAfterInit(CachingConnectionFactory original) {
         return original;
     }
+
+    @Override
+    public boolean accepts(Object bean, String beanName) {
+        return bean instanceof CachingConnectionFactory;
+    }
+
 }
