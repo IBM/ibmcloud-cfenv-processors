@@ -16,15 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @RunWith(SpringRunner.class)
-//@SpringBootTest(
-//        classes = {AmqpOptionsCustomizer.class, ExtensibleTypedBeanProcessor.class, SslcontextConfig.class}
-//)
 public class AmqpCfEnvProcessorApplicationTests {
-
-    static {
-        System.setProperty("cfenv.processor.icdamqp.enabled", "true");
-        System.setProperty("cfenv.processor.icdamqp.sslcontext", "amqp");
-    }
 
     @BeforeAll
     public void initRabbitService() throws URISyntaxException, IOException {

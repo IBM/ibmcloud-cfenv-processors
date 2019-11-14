@@ -11,7 +11,7 @@
         "rc_compatible",
         "ibmcloud-alias"
       ],
-      "instance_name": "test",
+      "instance_name": "instance name",
       "binding_name": null,
       "credentials": {
         "connection": {

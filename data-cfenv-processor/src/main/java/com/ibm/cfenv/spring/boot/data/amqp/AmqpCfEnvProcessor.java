@@ -22,6 +22,7 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class AmqpCfEnvProcessor implements CfEnvProcessor {
 
@@ -56,7 +57,7 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
     @Override
     public CfEnvProcessorProperties getProperties() {
         return CfEnvProcessorProperties.builder()
-                .propertyPrefixes("cfenv.processor.icdamqp,sslcontext,spring.rabbitmq")
+                .propertyPrefixes("sslcontext,spring.rabbitmq")
                 .serviceName("rabbitMQ")
                 .build();
     }
