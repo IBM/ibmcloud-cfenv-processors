@@ -19,8 +19,6 @@
 
     <dependencies>
         <dependency>
-            <!-- TODO I've decoupled the ssl from the customizer - should this dependency be on the processor, application, or the parent pom? I think it
-            should be in the parent. -->
             <groupId>com.ibm.cloud</groupId>
             <artifactId>ssl-context-spring-boot-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>

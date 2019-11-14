@@ -2,7 +2,7 @@ package com.ibm.cfenv.spring.boot.data.mongodb;
 
 import com.ibm.beancustomizer.config.BeanCustomizer;
 import com.ibm.beancustomizer.config.ExtensibleTypedBeanProcessor;
-import com.ibm.sslcontext.config.SslcontextConfig;
+import com.ibm.sslcontext.SslcontextConfig;
 import com.mongodb.MongoClientOptions;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.beans.factory.BeanCreationException;
@@ -36,7 +36,7 @@ public class MongoClientOptionsCustomizer implements BeanCustomizer {
 
     @Override
     public Class getType() {
-        return Object.class;
+        return MongoClientOptions.class;
     }
 
     @Override
