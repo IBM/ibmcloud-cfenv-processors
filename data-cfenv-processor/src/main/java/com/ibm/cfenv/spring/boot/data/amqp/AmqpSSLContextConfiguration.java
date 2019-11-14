@@ -1,6 +1,5 @@
 package com.ibm.cfenv.spring.boot.data.amqp;
 
-import com.ibm.beancustomizer.config.BeanCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,10 +7,10 @@ import javax.net.ssl.SSLContext;
 import java.util.Map;
 
 @Configuration
-public class AmqpOptionsConfiguration {
+public class AmqpSSLContextConfiguration {
 
     @Bean
-    public BeanCustomizer beanCustomizer(Map<String, SSLContext> sslContexts) {
-        return new AmqpOptionsBeanCustomizer(sslContexts);
+    public AmqpSSLContextBeanCustomizer beanCustomizer(Map<String, SSLContext> sslContexts) {
+        return new AmqpSSLContextBeanCustomizer(sslContexts);
     }
 }

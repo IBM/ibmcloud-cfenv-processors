@@ -29,7 +29,7 @@ public class AmqpCfEnvProcessorApplicationTests {
 
     @Test
     public void contextLoads() {
-        ConfigurableApplicationContext run = SpringApplication.run(new Class[]{AmqpOptionsBeanCustomizer.class},
+        ConfigurableApplicationContext run = SpringApplication.run(new Class[]{AmqpSSLContextBeanCustomizer.class},
                 new String[]{});
         run.start();
     }

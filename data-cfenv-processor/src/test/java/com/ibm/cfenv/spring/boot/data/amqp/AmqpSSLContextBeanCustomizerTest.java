@@ -11,18 +11,18 @@ import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AmqpOptionsBeanCustomizerTest {
+class AmqpSSLContextBeanCustomizerTest {
     @Test
     public void instantiatedWithANullValue_preAndPostInitIsCalled_originalValuesAreReturned() {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory();
-        assertThat(new AmqpOptionsBeanCustomizer(null).postProcessAfterInit(cachingConnectionFactory)).isEqualTo(cachingConnectionFactory);
-        assertThat(new AmqpOptionsBeanCustomizer(null).postProcessBeforeInit(cachingConnectionFactory)).isEqualTo(cachingConnectionFactory);
+        assertThat(new AmqpSSLContextBeanCustomizer(null).postProcessAfterInit(cachingConnectionFactory)).isEqualTo(cachingConnectionFactory);
+        assertThat(new AmqpSSLContextBeanCustomizer(null).postProcessBeforeInit(cachingConnectionFactory)).isEqualTo(cachingConnectionFactory);
     }
 
     @Test
     public void instantiatedWithAnyValue_postInitIsCalled_originalValuesAreReturned() {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory();
-        assertThat(new AmqpOptionsBeanCustomizer(new HashMap<>()).postProcessAfterInit(cachingConnectionFactory)).isEqualTo(cachingConnectionFactory);
+        assertThat(new AmqpSSLContextBeanCustomizer(new HashMap<>()).postProcessAfterInit(cachingConnectionFactory)).isEqualTo(cachingConnectionFactory);
     }
 
     @Test
@@ -33,7 +33,7 @@ class AmqpOptionsBeanCustomizerTest {
                 .thenReturn(expectedSSLSocketFactory);
         HashMap<String, SSLContext> sslContexts = new HashMap<>();
         sslContexts.put("amqp", sslContext);
-        SocketFactory actualSocketFactory = new AmqpOptionsBeanCustomizer(sslContexts)
+        SocketFactory actualSocketFactory = new AmqpSSLContextBeanCustomizer(sslContexts)
                 .postProcessBeforeInit(new CachingConnectionFactory())
                 .getRabbitConnectionFactory()
                 .getSocketFactory();
@@ -42,8 +42,8 @@ class AmqpOptionsBeanCustomizerTest {
 
     @Test
     public void usingBothValidAndInvalidBeans_acceptIsCalledCorrectly() {
-        AmqpOptionsBeanCustomizer amqpOptionsBeanCustomizer = new AmqpOptionsBeanCustomizer(null);
-        assertThat(amqpOptionsBeanCustomizer.accepts("", null)).isEqualTo(false);
-        assertThat(amqpOptionsBeanCustomizer.accepts(new CachingConnectionFactory(), null)).isEqualTo(true);
+        AmqpSSLContextBeanCustomizer amqpSSLContextBeanCustomizer = new AmqpSSLContextBeanCustomizer(null);
+        assertThat(amqpSSLContextBeanCustomizer.accepts("", null)).isEqualTo(false);
+        assertThat(amqpSSLContextBeanCustomizer.accepts(new CachingConnectionFactory(), null)).isEqualTo(true);
     }
 }

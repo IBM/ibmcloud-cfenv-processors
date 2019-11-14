@@ -9,12 +9,12 @@ import javax.net.ssl.SSLContext;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AmqpOptionsBeanCustomizer implements BeanCustomizer<CachingConnectionFactory> {
+public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConnectionFactory> {
 
     private final Map<String, SSLContext> sslContexts;
 
     @Autowired(required = false)
-    public AmqpOptionsBeanCustomizer(Map<String, SSLContext> sslContexts) {
+    public AmqpSSLContextBeanCustomizer(Map<String, SSLContext> sslContexts) {
         if (sslContexts == null) {
             this.sslContexts = new HashMap<>();
         } else {
