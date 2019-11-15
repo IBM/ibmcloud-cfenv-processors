@@ -1,6 +1,5 @@
 package com.ibm.cfenv.spring.boot.data.mongodb;
 
-import com.ibm.cfenv.spring.boot.data.mongodb.MongoDBCfEnvProcessor;
 import io.pivotal.cfenv.core.CfCredentials;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class MongoDBCfEnvProcessorTest {
 
@@ -36,9 +35,10 @@ class MongoDBCfEnvProcessorTest {
         mongoDBCfEnvProcessor.process(cfCredentials, properties);
 
         assertThat(properties.get("spring.data.mongodb.uri")).isEqualTo("http://localhost:9093");
-        assertThat(properties.get("sslcontext.enabled")).isEqualTo(true);
         assertThat(properties.get("sslcontext.contexts.mongodb.trustedcert")).isEqualTo("test");
-        assertThat(properties.get("cfenv.processor.icdmongo.enabled")).isEqualTo(true);
-        assertThat(properties.get("cfenv.processor.icdmongo.sslcontext")).isEqualTo("mongodb");
+
+        assertThat(properties.get("sslcontext.enabled")).isNull();
+        assertThat(properties.get("cfenv.processor.icdmongo.enabled")).isNull();
+        assertThat(properties.get("cfenv.processor.icdmongo.sslcontext")).isNull();
     }
 }

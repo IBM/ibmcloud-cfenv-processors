@@ -1,2 +1,4 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
   com.ibm.cfenv.spring.boot.data.mongodb.MongoDBCfEnvProcessor
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.ibm.cfenv.spring.boot.data.mongodb.MongoClientOptionsConfiguration

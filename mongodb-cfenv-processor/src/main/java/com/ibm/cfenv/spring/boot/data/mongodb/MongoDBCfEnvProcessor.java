@@ -23,7 +23,7 @@ public class MongoDBCfEnvProcessor implements CfEnvProcessor {
     @Override
     public CfEnvProcessorProperties getProperties() {
         return CfEnvProcessorProperties.builder()
-                .propertyPrefixes("cfenv.processor.icdmongo,sslcontext,spring.data.mongodb")
+                .propertyPrefixes("sslcontext,spring.data.mongodb")
                 .serviceName("MongoDB")
                 .build();
     }
@@ -41,13 +41,7 @@ public class MongoDBCfEnvProcessor implements CfEnvProcessor {
                     Map<String, Object> certinfo = (Map<String, Object>) details.get("certificate");
                     String trustedcert = certinfo.get("certificate_base64").toString();
                     properties.put("spring.data.mongodb.uri", uri);
-
-                    properties.put("sslcontext.enabled", true);
                     properties.put("sslcontext.contexts.mongodb.trustedcert", trustedcert);
-
-                    properties.put("cfenv.processor.icdmongo.enabled", true);
-                    properties.put("cfenv.processor.icdmongo.sslcontext", "mongodb");
-
                     LOG.info("Processed the mongodb connection correctly");
                 }
             }
