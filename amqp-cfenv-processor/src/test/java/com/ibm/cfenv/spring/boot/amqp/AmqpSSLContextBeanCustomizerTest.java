@@ -1,6 +1,6 @@
 package com.ibm.cfenv.spring.boot.amqp;
 
-import com.ibm.cfenv.spring.boot.amqp.AmqpSSLContextBeanCustomizer;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -9,8 +9,6 @@ import javax.net.SocketFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import java.util.HashMap;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class AmqpSSLContextBeanCustomizerTest {
     @Test
