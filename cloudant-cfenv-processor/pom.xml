@@ -12,6 +12,6 @@
     <artifactId>cloudant-cfenv-processor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloudant-cfenv-processor</name>
-
+    <groupId>com.ibm.cfenv</groupId>
 
 </project>

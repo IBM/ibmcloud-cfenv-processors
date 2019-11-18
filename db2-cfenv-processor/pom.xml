@@ -9,9 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.ibm.cfenv</groupId>
     <artifactId>db2-cfenv-processor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>db2-cfenv-processor</name>
-
-
 </project>
