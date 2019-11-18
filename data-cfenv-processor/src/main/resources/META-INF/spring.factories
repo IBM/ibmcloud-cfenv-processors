@@ -1,6 +1,0 @@
-io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
-  com.ibm.cfenv.spring.boot.data.CloudantCfEnvProcessor, \
-  com.ibm.cfenv.spring.boot.data.DB2CfEnvProcessor, \
-  com.ibm.cfenv.spring.boot.data.amqp.AmqpCfEnvProcessor
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.ibm.cfenv.spring.boot.data.amqp.AmqpSSLContextConfiguration
