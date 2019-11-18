@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.terrence</groupId>
-	<artifactId>cfenv-big-repo</artifactId>
-	<packaging>pom</packaging>
-	<version>0.0.1.BUILD-SNAPSHOT</version>
+    <groupId>com.ibm.cloud</groupId>
+    <artifactId>cfenv-processor-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1.BUILD-SNAPSHOT</version>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-	<properties>
-		<springframework.version>2.1.4.RELEASE</springframework.version>
-		<io-pivotal-cfenv.version>1.0.0.RELEASE</io-pivotal-cfenv.version>
-		<java.version>1.8</java.version>
-	</properties>
+    <properties>
+        <io-pivotal-cfenv.version>1.1.1.RELEASE</io-pivotal-cfenv.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.pivotal.cfenv</groupId>
-			<artifactId>java-cfenv-boot</artifactId>
-			<version>${io-pivotal-cfenv.version}</version>
-		</dependency>	
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.pivotal.cfenv</groupId>
+            <artifactId>java-cfenv-boot</artifactId>
+            <version>${io-pivotal-cfenv.version}</version>
+        </dependency>
 
-	<modules>
-		<module>cfenv-processor-cloudant</module>
-		<module>cfenv-processor-db2</module>
-		<module>cfenv-processor-watson-assistant</module>
-		<module>cfenv-processor-watson-compare-comply</module>
-		<module>cfenv-processor-watson-discovery</module>
-		<module>cfenv-processor-watson-language-translator</module>
-		<module>cfenv-processor-watson-natural-language-classifier</module>
-		<module>cfenv-processor-watson-natural-language-understanding</module>
-		<module>cfenv-processor-watson-personality-insights</module>
-		<module>cfenv-processor-watson-speech-to-text</module>
-		<module>cfenv-processor-watson-text-to-speech</module>
-		<module>cfenv-processor-watson-tone-analyzer</module>
-		<module>cfenv-processor-watson-visual-recognition</module>
-	</modules>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.pivotal.cfenv</groupId>
+            <artifactId>java-cfenv-test-support</artifactId>
+            <version>${io-pivotal-cfenv.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>amqp-cfenv-processor</module>
+        <module>cloudant-cfenv-processor</module>
+        <module>db2-cfenv-processor</module>
+        <module>mongodb-cfenv-processor</module>
+        <module>watson-cfenv-processor</module>
+        <module>bean-customizer-spring-boot</module>
+        <module>ssl-context-spring-boot-starter</module>
+        <module>demo</module>
+    </modules>
 
 </project>

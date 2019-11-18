@@ -1,0 +1,4 @@
+io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
+  com.ibm.cfenv.spring.boot.amqp.AmqpCfEnvProcessor
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.ibm.cfenv.spring.boot.amqp.AmqpSSLContextConfiguration

@@ -1,0 +1,2 @@
+io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
+  com.ibm.cfenv.spring.boot.cloudant.CloudantCfEnvProcessor

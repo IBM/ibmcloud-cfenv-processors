@@ -1,0 +1,146 @@
+{
+  "messages-for-rabbitmq": [
+    {
+      "label": "messages-for-rabbitmq",
+      "provider": null,
+      "plan": "standard",
+      "name": "test",
+      "tags": [
+        "data_management",
+        "ibm_created",
+        "rc_compatible",
+        "ibmcloud-alias"
+      ],
+      "instance_name": "instance name",
+      "binding_name": null,
+      "credentials": {
+        "connection": {
+          "amqps": {
+            "authentication": {
+              "method": "direct",
+              "password": "some_password",
+              "username": "some_username"
+            },
+            "certificate": {
+              "certificate_base64": "base_64_cert",
+              "name": "29c1ced7-d56b-11e9-9cdf-5ac3ad5108a4"
+            },
+            "composed": [
+              "amqps://some_username:some_password@3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud:31610"
+            ],
+            "hosts": [
+              {
+                "hostname": "3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud",
+                "port": 31610
+              }
+            ],
+            "path": "",
+            "query_options": {},
+            "scheme": "amqps",
+            "type": "uri"
+          },
+          "cli": {
+            "arguments": [
+              [
+                "--username=some_username",
+                "--password=some_password",
+                "--ssl",
+                "--ssl-ca-cert-file=29c1ced7-d56b-11e9-9cdf-5ac3ad5108a4",
+                "--host=3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud",
+                "--port=31749"
+              ]
+            ],
+            "bin": "rabbitmqadmin",
+            "certificate": {
+              "certificate_base64": "base_64_cert",
+              "name": "29c1ced7-d56b-11e9-9cdf-5ac3ad5108a4"
+            },
+            "composed": [
+              "rabbitmqadmin --username=some_username --password=some_password --ssl --ssl-ca-cert-file=29c1ced7-d56b-11e9-9cdf-5ac3ad5108a4 --host=3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud --port=31749"
+            ],
+            "environment": {},
+            "type": "cli"
+          },
+          "https": {
+            "authentication": {
+              "method": "direct",
+              "password": "some_password",
+              "username": "some_username"
+            },
+            "browser_accessible": true,
+            "certificate": {
+              "certificate_base64": "base_64_cert",
+              "name": "29c1ced7-d56b-11e9-9cdf-5ac3ad5108a4"
+            },
+            "composed": [
+              "https://some_username:some_password@3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud:31749"
+            ],
+            "hosts": [
+              {
+                "hostname": "3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud",
+                "port": 31749
+              }
+            ],
+            "path": "",
+            "query_options": {},
+            "scheme": "https",
+            "type": "uri"
+          },
+          "mqtts": {
+            "authentication": {
+              "method": "direct",
+              "password": "some_password",
+              "username": "some_username"
+            },
+            "certificate": {
+              "certificate_base64": "base_64_cert",
+              "name": "29c1ced7-d56b-11e9-9cdf-5ac3ad5108a4"
+            },
+            "composed": [
+              "mqtts://some_username:some_password@3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud:31124"
+            ],
+            "hosts": [
+              {
+                "hostname": "3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud",
+                "port": 31124
+              }
+            ],
+            "path": "",
+            "query_options": {},
+            "scheme": "mqtts",
+            "type": "uri"
+          },
+          "stomp_ssl": {
+            "authentication": {
+              "method": "direct",
+              "password": "some_password",
+              "username": "some_username"
+            },
+            "certificate": {
+              "certificate_base64": "base_64_cert",
+              "name": "29c1ced7-d56b-11e9-9cdf-5ac3ad5108a4"
+            },
+            "composed": [
+              "--username=some_username --password=some_password --ssl=true --host=3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud --port=31453"
+            ],
+            "hosts": [
+              {
+                "hostname": "3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud",
+                "port": 31453
+              }
+            ],
+            "ssl": true,
+            "type": "stomp"
+          }
+        },
+        "instance_administration_api": {
+          "deployment_id": "crn:v1:bluemix:public:messages-for-rabbitmq:us-south:a/af925ca6d70683d989b49655787cf9da:3633348c-ceb4-4c9d-ac40-b87081574342::",
+          "instance_id": "crn:v1:bluemix:public:messages-for-rabbitmq:us-south:a/af925ca6d70683d989b49655787cf9da:3633348c-ceb4-4c9d-ac40-b87081574342::",
+          "root": "https://api.us-south.databases.cloud.ibm.com/v4/ibm"
+        }
+      },
+      "syslog_drain_url": null,
+      "volume_mounts": []
+    }
+  ]
+}

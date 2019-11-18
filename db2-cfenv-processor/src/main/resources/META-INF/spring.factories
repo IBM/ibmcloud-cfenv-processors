@@ -1,0 +1,1 @@
+io.pivotal.cfenv.spring.boot.CfEnvProcessor=com.ibm.cfenv.spring.boot.db2.DB2CfEnvProcessor
