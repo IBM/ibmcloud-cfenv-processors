@@ -1,14 +1,13 @@
 package com.ibm.sslcontext;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
-@ConfigurationProperties("sslcontext")
+@ConfigurationProperties(prefix = "sslcontext")
 public class SslConfigProperties {
-    private Map<String, SSLContext> contexts;
+    private Map<String, SSLContext> contexts = new HashMap<>();
 
     public Map<String, SSLContext> getContexts() {
         return contexts;
