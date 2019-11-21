@@ -24,12 +24,12 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.ibm.cloud</groupId>
+            <groupId>com.ibm.cfenv</groupId>
             <artifactId>amqp-cfenv-processor</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.ibm.cloud</groupId>
+            <groupId>com.ibm.cfenv</groupId>
             <artifactId>mongodb-cfenv-processor</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

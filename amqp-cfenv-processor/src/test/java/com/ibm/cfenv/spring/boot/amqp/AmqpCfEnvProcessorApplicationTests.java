@@ -2,7 +2,6 @@ package com.ibm.cfenv.spring.boot.amqp;
 
 import io.pivotal.cfenv.test.CfEnvTestUtils;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -18,17 +17,14 @@ import java.nio.file.Paths;
 @RunWith(SpringRunner.class)
 public class AmqpCfEnvProcessorApplicationTests {
 
-    @BeforeAll
-    public void initRabbitService() throws URISyntaxException, IOException {
+    @Test
+    public void contextLoads() throws URISyntaxException, IOException {
         URL url = AmqpCfEnvProcessorTest.class.getClassLoader().getResource("./messages-rabbit-vcap-services.json");
         StringBuilder contentBuilder = new StringBuilder();
         Files.lines(Paths.get(url.toURI()), StandardCharsets.UTF_8).forEach(s -> contentBuilder.append(s));
         String json = contentBuilder.toString();
         CfEnvTestUtils.mockVcapServicesFromString(json);
-    }
 
-    @Test
-    public void contextLoads() {
         ConfigurableApplicationContext run = SpringApplication.run(new Class[]{AmqpSSLContextBeanCustomizer.class},
                 new String[]{});
         run.start();

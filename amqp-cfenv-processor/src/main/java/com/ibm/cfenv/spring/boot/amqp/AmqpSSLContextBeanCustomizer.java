@@ -23,10 +23,9 @@ public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConne
     }
 
     @Override
-    public CachingConnectionFactory postProcessBeforeInit(CachingConnectionFactory original) {
-        CachingConnectionFactory cachingConnectionFactory = original;
-        if (sslContexts.containsKey("amqp")) {
-            SSLContext sslContext = sslContexts.get("amqp");
+    public CachingConnectionFactory postProcessBeforeInit(CachingConnectionFactory cachingConnectionFactory) {
+        SSLContext sslContext = sslContexts.get("amqp");
+        if (sslContext != null) {
             ConnectionFactory connectionFactory = cachingConnectionFactory.getRabbitConnectionFactory();
             connectionFactory.useSslProtocol(sslContext);
             connectionFactory.enableHostnameVerification();

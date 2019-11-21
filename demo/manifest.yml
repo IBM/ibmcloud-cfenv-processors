@@ -1,0 +1,9 @@
+---
+applications:
+  - name: george-demo-app
+    memory: 512M
+    instances: 2
+    path: target/demo-0.0.1-SNAPSHOT.jar
+    services:
+      - test
+      - rabbit
