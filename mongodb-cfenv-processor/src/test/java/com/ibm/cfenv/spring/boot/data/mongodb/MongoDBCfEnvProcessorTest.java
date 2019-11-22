@@ -15,7 +15,15 @@ class MongoDBCfEnvProcessorTest {
     MongoDBCfEnvProcessor mongoDBCfEnvProcessor = new MongoDBCfEnvProcessor();
 
     @Test
-    void process() {
+    public void invalidCredentials_noPropertiesAreSet() {
+        Map<String, Object> properties = new HashMap<>();
+        mongoDBCfEnvProcessor.process(new CfCredentials(new HashMap<>()), properties);
+
+        assertThat(properties.isEmpty()).isTrue();
+    }
+
+    @Test
+    void validCredentials_propertiesAreSet() {
         List<String> uris = Arrays.asList("http://localhost:9093");
         HashMap<Object, Object> certificate = new HashMap<>();
         certificate.put("certificate_base64", "test");
@@ -34,11 +42,8 @@ class MongoDBCfEnvProcessorTest {
         Map<String, Object> properties = new HashMap<>();
         mongoDBCfEnvProcessor.process(cfCredentials, properties);
 
+        assertThat(properties.size()).isEqualTo(2);
         assertThat(properties.get("spring.data.mongodb.uri")).isEqualTo("http://localhost:9093");
         assertThat(properties.get("sslcontext.contexts.mongodb.trustedcert")).isEqualTo("test");
-
-        assertThat(properties.get("sslcontext.enabled")).isNull();
-        assertThat(properties.get("cfenv.processor.icdmongo.enabled")).isNull();
-        assertThat(properties.get("cfenv.processor.icdmongo.sslcontext")).isNull();
     }
 }

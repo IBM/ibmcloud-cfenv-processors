@@ -28,11 +28,10 @@ public class MongoClientOptionsSSLContextBeanCustomizer implements BeanCustomize
     }
 
     @Override
-    public MongoClientOptions postProcessBeforeInit(MongoClientOptions original) {
-        MongoClientOptions mongoClientOptions = original;
-        if (sslContexts.containsKey("mongodb")) {
-            SSLContext sslContext = sslContexts.get("mongodb");
-            mongoClientOptions = MongoClientOptions.builder(original)
+    public MongoClientOptions postProcessBeforeInit(MongoClientOptions mongoClientOptions) {
+        SSLContext sslContext = sslContexts.get("mongodb");
+        if (sslContext != null) {
+            mongoClientOptions = MongoClientOptions.builder(mongoClientOptions)
                     .sslContext(sslContext)
                     .sslEnabled(true)
                     .build();

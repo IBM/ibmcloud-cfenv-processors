@@ -1,10 +1,9 @@
 package com.ibm.cfenv.spring.boot.amqp;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.pivotal.cfenv.core.CfCredentials;
-import io.pivotal.cfenv.core.CfEnv;
 import io.pivotal.cfenv.core.CfService;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
-import io.pivotal.cfenv.test.CfEnvTestUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -12,10 +11,8 @@ import org.junit.jupiter.api.TestInstance;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,30 +20,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AmqpCfEnvProcessorTest {
     AmqpCfEnvProcessor amqpCfEnvProcessor = new AmqpCfEnvProcessor();
-    CfService cfService;
+    CfService service;
 
     @BeforeAll
     public void initSingleRabbitService() throws URISyntaxException, IOException {
         URL url = AmqpCfEnvProcessorTest.class.getClassLoader().getResource("./messages-rabbit-vcap-services.json");
-        StringBuilder contentBuilder = new StringBuilder();
-        Files.lines(Paths.get(url.toURI()), StandardCharsets.UTF_8).forEach(s -> contentBuilder.append(s));
-        String json = contentBuilder.toString();
-        CfEnvTestUtils.mockVcapServicesFromString(json);
-
-        CfEnv cfEnv = new CfEnv();
-        cfService = cfEnv.findServiceByLabel("messages-for-rabbitmq");
+        Map<String, Object> serviceData = (Map<String, Object>) ((List) new ObjectMapper()
+                .readValue(url, Map.class)
+                .get("messages-for-rabbitmq"))
+                .get(0);
+        service = new CfService(serviceData);
     }
 
     @Test
     public void validCFService_accept_serviceAccepted() {
-        assertThat(amqpCfEnvProcessor.accept(cfService)).isEqualTo(true);
+        assertThat(amqpCfEnvProcessor.accept(service)).isEqualTo(true);
     }
 
     @Test
     public void validCFService_propertiesProcessed_correctHostPortUsernameAndPassword() {
-        CfCredentials cfCredentials = cfService.getCredentials();
         Map<String, Object> properties = new HashMap<>();
-        amqpCfEnvProcessor.process(cfCredentials, properties);
+        amqpCfEnvProcessor.process(service.getCredentials(), properties);
 
         assertThat(properties.get("spring.rabbitmq.host")).isEqualTo("3633348c-ceb4-4c9d-ac40-b87081574342.blijti4d0v0nkr55oei0.databases.appdomain.cloud");
         assertThat(properties.get("spring.rabbitmq.port")).isEqualTo(31610);
@@ -56,7 +50,7 @@ class AmqpCfEnvProcessorTest {
 
     @Test
     public void validCFService_propertiesProcessed_CorrectSslSetup() {
-        CfCredentials cfCredentials = cfService.getCredentials();
+        CfCredentials cfCredentials = service.getCredentials();
         Map<String, Object> properties = new HashMap<>();
         amqpCfEnvProcessor.process(cfCredentials, properties);
 
