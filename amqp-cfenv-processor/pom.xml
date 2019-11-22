@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ibm.cloud</groupId>
         <artifactId>cfenv-processor-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.4-SNAPSHOT</version>
     </parent>
 
     <groupId>com.ibm.cfenv</groupId>
@@ -20,12 +20,12 @@
         <dependency>
             <groupId>com.ibm.cloud</groupId>
             <artifactId>ssl-context-spring-boot-starter</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cloud</groupId>
             <artifactId>bean-customizer-spring-boot</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.amqp</groupId>
