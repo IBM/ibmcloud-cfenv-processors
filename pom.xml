@@ -65,6 +65,7 @@
         <module>watson-cfenv-processor</module>
         <module>ssl-context-spring-boot-starter</module>
         <module>bean-customizer-spring-boot</module>
+        <module>event-streams-cfenv-processor</module>
     </modules>
 
     <build>
