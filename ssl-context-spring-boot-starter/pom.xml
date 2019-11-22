@@ -9,7 +9,6 @@
 
     <name>ssl-context-spring-boot-starter</name>
     <artifactId>ssl-context-spring-boot-starter</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
     <description>Dynamic SSLContexts for Spring Boot.</description>
 
     <properties>

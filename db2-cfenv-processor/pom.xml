@@ -9,6 +9,5 @@
 
     <groupId>com.ibm.cfenv</groupId>
     <artifactId>db2-cfenv-processor</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
     <name>db2-cfenv-processor</name>
 </project>

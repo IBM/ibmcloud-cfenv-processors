@@ -9,7 +9,6 @@
 
     <groupId>com.ibm.cfenv</groupId>
     <artifactId>amqp-cfenv-processor</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
     <name>amqp-cfenv-processor</name>
 
     <description>A CfEnvProcessor Implementation for IBM AMQP</description>

@@ -8,7 +8,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cloudant-cfenv-processor</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
     <name>cloudant-cfenv-processor</name>
     <groupId>com.ibm.cfenv</groupId>
 
