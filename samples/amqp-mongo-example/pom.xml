@@ -11,7 +11,7 @@
 
     <groupId>com.ibm.cloud</groupId>
     <artifactId>amqp-mongo-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>amqp-mongo-example</name>
     <description>Demo project for Spring Boot</description>
 
@@ -27,12 +27,12 @@
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>amqp-cfenv-processor</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>mongodb-cfenv-processor</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
 
         <dependency>
