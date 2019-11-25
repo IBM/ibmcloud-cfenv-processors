@@ -15,7 +15,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <cfenv-processor.version>0.0.4-SNAPSHOT</cfenv-processor.version>
     </properties>
 
     <dependencies>
@@ -26,17 +25,17 @@
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>amqp-cfenv-processor</artifactId>
-            <version>${cfenv-processor.version}</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>mongodb-cfenv-processor</artifactId>
-            <version>${cfenv-processor.version}</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>event-streams-cfenv-processor</artifactId>
-            <version>${cfenv-processor.version}</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
 
         <dependency>
