@@ -4,11 +4,10 @@
 	<parent>
 		<groupId>com.ibm.cloud</groupId>
 		<artifactId>cfenv-processor-parent</artifactId>
-		<version>0.0.3-SNAPSHOT</version>
+		<version>0.0.5-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>bean-customizer-spring-boot</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
 	<name>bean-customizer-spring-boot</name>
 	<description>Bean Customization for Spring Boot</description>
 

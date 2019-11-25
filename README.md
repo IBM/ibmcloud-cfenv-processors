@@ -6,8 +6,9 @@ Uses the CFEnv processor to set the properties from the service entry in VCAP_SE
 
 ## Services
 - Cloudant
-- MongoDB
 - DB2
+- Kafka Event Streams
+- MongoDB
 - Watson Assistant
 - Watson Compare and Comply
 - Watson Discovery

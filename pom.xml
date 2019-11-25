@@ -12,7 +12,7 @@
     <groupId>com.ibm.cloud</groupId>
     <artifactId>cfenv-processor-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -65,6 +65,8 @@
         <module>watson-cfenv-processor</module>
         <module>ssl-context-spring-boot-starter</module>
         <module>bean-customizer-spring-boot</module>
+        <module>event-streams-cfenv-processor</module>
+        <module>samples</module>
     </modules>
 
     <build>

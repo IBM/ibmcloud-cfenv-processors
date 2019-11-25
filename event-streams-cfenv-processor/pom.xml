@@ -8,6 +8,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ibm.cfenv</groupId>
-    <artifactId>db2-cfenv-processor</artifactId>
-    <name>db2-cfenv-processor</name>
+    <artifactId>event-streams-cfenv-processor</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ibm.cloud</groupId>
+            <artifactId>event-streams-spring-boot-starter</artifactId>
+            <version>0.0.2</version>
+        </dependency>
+    </dependencies>
+
 </project>

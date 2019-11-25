@@ -12,10 +12,6 @@ public class DB2CfEnvProcessor implements CfEnvProcessor {
 
     private static final Logger LOG = Logger.getLogger(DB2CfEnvProcessor.class.getName());
 
-    public DB2CfEnvProcessor() {
-        LOG.info("DB2CfEnvProcessor built");
-    }
-
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("dashDB For Transactions");
