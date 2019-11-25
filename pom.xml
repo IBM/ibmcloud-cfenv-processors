@@ -66,6 +66,7 @@
         <module>ssl-context-spring-boot-starter</module>
         <module>bean-customizer-spring-boot</module>
         <module>event-streams-cfenv-processor</module>
+        <module>samples</module>
     </modules>
 
     <build>

@@ -34,7 +34,7 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Sending message...");
+        System.out.println("Sending message to rabbit");
         rabbitOperations.convertAndSend(AMQPConfiguration.topicExchangeName, "foo.bar.baz", "Hello from RabbitMQ!");
         receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
     }
