@@ -3,37 +3,34 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ibm.cloud</groupId>
-        <artifactId>cfenv-processor-parent</artifactId>
-        <version>0.0.5-SNAPSHOT</version>
+        <artifactId>cfenv-processors</artifactId>
+        <version>0.0.6-SNAPSHOT</version>
     </parent>
 
     <groupId>com.ibm.cfenv</groupId>
-    <artifactId>mongodb-cfenv-processor</artifactId>
-    <name>mongodb-cfenv-processor</name>
-    <description>A CfEnvProcessor Implementation for Mongodb</description>
+    <artifactId>amqp-cfenv-processor</artifactId>
+    <name>amqp-cfenv-processor</name>
 
+    <description>A CfEnvProcessor Implementation for IBM AMQP</description>
     <properties>
         <version.spring-rabbit>2.2.1.RELEASE</version.spring-rabbit>
-        <version.spring-data-mongodb>2.2.1.RELEASE</version.spring-data-mongodb>
-        <version.mongo-java-driver>3.11.2</version.mongo-java-driver>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.ibm.cloud</groupId>
             <artifactId>ssl-context-spring-boot-starter</artifactId>
-            <version>0.0.5-SNAPSHOT</version>
+            <version>0.0.6-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cloud</groupId>
             <artifactId>bean-customizer-spring-boot</artifactId>
-            <version>0.0.5-SNAPSHOT</version>
+            <version>0.0.6-SNAPSHOT</version>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-mongodb</artifactId>
-            <version>${version.spring-data-mongodb}</version>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>${version.spring-rabbit}</version>
         </dependency>
 
     </dependencies>

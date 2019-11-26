@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
+        <artifactId>cfenv-processors</artifactId>
         <groupId>com.ibm.cloud</groupId>
-        <artifactId>cfenv-processor-parent</artifactId>
-        <version>0.0.5-SNAPSHOT</version>
+        <version>0.0.6-SNAPSHOT</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>watson-cfenv-processor</artifactId>
-    <name>watson-cfenv-processor</name>
+    <artifactId>cloudant-cfenv-processor</artifactId>
+    <name>cloudant-cfenv-processor</name>
     <groupId>com.ibm.cfenv</groupId>
-    <description>CfEnvProcessor implementations for Watson products</description>
 
 </project>

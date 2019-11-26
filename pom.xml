@@ -12,7 +12,7 @@
     <groupId>com.ibm.cloud</groupId>
     <artifactId>cfenv-processor-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -58,15 +58,9 @@
     </dependencies>
 
     <modules>
-        <module>amqp-cfenv-processor</module>
-        <module>cloudant-cfenv-processor</module>
-        <module>db2-cfenv-processor</module>
-        <module>mongodb-cfenv-processor</module>
-        <module>watson-cfenv-processor</module>
-        <module>ssl-context-spring-boot-starter</module>
-        <module>bean-customizer-spring-boot</module>
-        <module>event-streams-cfenv-processor</module>
         <module>samples</module>
+        <module>starters</module>
+        <module>processors</module>
     </modules>
 
     <build>

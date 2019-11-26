@@ -16,11 +16,12 @@
     </parent>
 
     <groupId>com.ibm.cloud</groupId>
-    <artifactId>samples</artifactId>
+    <artifactId>starters</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>amqp-mongo-kafka</module>
+        <module>bean-customizer-spring-boot</module>
+        <module>ssl-context-spring-boot-starter</module>
     </modules>
 
 </project>

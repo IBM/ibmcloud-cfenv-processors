@@ -16,11 +16,16 @@
     </parent>
 
     <groupId>com.ibm.cloud</groupId>
-    <artifactId>samples</artifactId>
+    <artifactId>cfenv-processors</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>amqp-mongo-kafka</module>
+        <module>amqp-cfenv-processor</module>
+        <module>cloudant-cfenv-processor</module>
+        <module>db2-cfenv-processor</module>
+        <module>event-streams-cfenv-processor</module>
+        <module>mongodb-cfenv-processor</module>
+        <module>watson-cfenv-processor</module>
     </modules>
 
 </project>
