@@ -8,8 +8,7 @@
     </parent>
 
     <groupId>com.ibm.cloud</groupId>
-    <artifactId>amqp-mongo-example</artifactId>
-    <name>amqp-mongo-example</name>
+    <artifactId>amqp-mongo-kafka</artifactId>
     <description>Demo project for Spring Boot</description>
 
     <properties>

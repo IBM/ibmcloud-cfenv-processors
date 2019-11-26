@@ -21,7 +21,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaOperations;
 
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class KafkaConfiguration {
@@ -32,7 +31,7 @@ public class KafkaConfiguration {
             String data = "testData:" + UUID.randomUUID();
             System.out.println("Sending message to kafka = " + data);
             kafkaOperations.send("orders", data);
-            kafkaConsumer.getCountDownLatch().await(10000, TimeUnit.MILLISECONDS);
+            kafkaConsumer.getCountDownLatch().await();
         };
     }
 }

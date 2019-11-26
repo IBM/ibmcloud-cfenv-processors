@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.CountDownLatch;
 
 @Service
-@KafkaListener(topics = "orders", containerFactory = "kafkaListenerContainerFactory")
+@KafkaListener(topics = "orders", groupId = "order-service")
 public class KafkaConsumer {
     private final CountDownLatch countDownLatch = new CountDownLatch(1);
 

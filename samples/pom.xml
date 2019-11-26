@@ -20,7 +20,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>amqp-mongo-example</module>
+        <module>amqp-mongo-kafka</module>
     </modules>
 
 </project>

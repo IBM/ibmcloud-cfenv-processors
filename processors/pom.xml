@@ -20,7 +20,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>amqp-mongo-example</module>
+        <module>amqp-cfenv-processor</module>
+        <module>cloudant-cfenv-processor</module>
+        <module>db2-cfenv-processor</module>
+        <module>event-streams-cfenv-processor</module>
+        <module>mongodb-cfenv-processor</module>
+        <module>watson-cfenv-processor</module>
     </modules>
 
 </project>
