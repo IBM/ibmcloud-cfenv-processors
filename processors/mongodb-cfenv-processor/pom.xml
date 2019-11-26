@@ -3,19 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ibm.cloud</groupId>
-        <artifactId>cfenv-processor-parent</artifactId>
+        <artifactId>cfenv-processors</artifactId>
         <version>0.0.5-SNAPSHOT</version>
     </parent>
 
     <groupId>com.ibm.cfenv</groupId>
     <artifactId>mongodb-cfenv-processor</artifactId>
-    <name>mongodb-cfenv-processor</name>
     <description>A CfEnvProcessor Implementation for Mongodb</description>
 
     <properties>
-        <version.spring-rabbit>2.2.1.RELEASE</version.spring-rabbit>
         <version.spring-data-mongodb>2.2.1.RELEASE</version.spring-data-mongodb>
-        <version.mongo-java-driver>3.11.2</version.mongo-java-driver>
     </properties>
 
     <dependencies>

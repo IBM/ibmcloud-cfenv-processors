@@ -3,12 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ibm.cloud</groupId>
-        <artifactId>cfenv-processor-parent</artifactId>
+        <artifactId>cfenv-processors</artifactId>
         <version>0.0.5-SNAPSHOT</version>
     </parent>
 
     <artifactId>watson-cfenv-processor</artifactId>
-    <name>watson-cfenv-processor</name>
     <groupId>com.ibm.cfenv</groupId>
     <description>CfEnvProcessor implementations for Watson products</description>
 

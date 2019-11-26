@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ibm.cloud</groupId>
-        <artifactId>cfenv-processor-parent</artifactId>
+        <artifactId>cfenv-processors</artifactId>
         <version>0.0.5-SNAPSHOT</version>
     </parent>
 
