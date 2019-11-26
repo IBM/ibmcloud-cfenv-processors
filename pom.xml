@@ -12,7 +12,7 @@
     <groupId>com.ibm.cloud</groupId>
     <artifactId>cfenv-processor-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.5</version>
+    <version>0.0.6-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -163,7 +163,7 @@
         <connection>scm:git:git@github.com:IBM/ibmcloud-cfenv-processors.git</connection>
         <developerConnection>scm:git:git@github.com:IBM/ibmcloud-cfenv-processors.git</developerConnection>
         <url>https://github.com/IBM/ibmcloud-cfenv-processors</url>
-      <tag>cfenv-processor-parent-0.0.5</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
