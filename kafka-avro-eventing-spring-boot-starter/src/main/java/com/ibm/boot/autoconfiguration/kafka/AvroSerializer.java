@@ -58,9 +58,9 @@ public class AvroSerializer<T extends SpecificRecordBase> implements Serializer<
             binaryEncoder.flush();
             byteArrayOutputStream.close();
 
-            byte[] bytes = byteArrayOutputStream.toByteArray();
-            return bytes;
+            return byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
+            logger.error("Can't serialize data='" + data + "' for topic='" + topic, e);
             throw new SerializationException(
                     "Can't serialize data='" + data + "' for topic='" + topic);
         }

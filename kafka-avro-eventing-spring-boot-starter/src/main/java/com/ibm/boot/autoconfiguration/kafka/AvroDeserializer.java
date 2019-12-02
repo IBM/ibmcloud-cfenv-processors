@@ -63,7 +63,8 @@ public class AvroDeserializer<T extends SpecificRecordBase> implements Deseriali
                         Decoder decoder = DecoderFactory.get().binaryDecoder(data, null);
                         return (T) specificDatumReader.read(null, decoder);
                     } catch (Exception e) {
-                        return null;
+                        logger.error("Can't deserialize for topic='" + topic, e);
+                        throw new DeserializationException("Can't deserialize for topic='" + topic, data, false, e);
                     }
                 })
                 .filter(o -> o != null)
