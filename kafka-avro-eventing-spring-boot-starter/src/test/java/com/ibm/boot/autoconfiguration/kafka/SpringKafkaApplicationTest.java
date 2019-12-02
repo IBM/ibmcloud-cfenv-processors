@@ -17,25 +17,21 @@ package com.ibm.boot.autoconfiguration.kafka;
 
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+//@SpringBootTest
 //@SpringBootTest(classes = {AvroStreamsTestConfiguration.class, AvroStreamsAutoConfiguration.class, KafkaAutoConfiguration.class})
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 public class SpringKafkaApplicationTest {
     @ClassRule
     public static EmbeddedKafkaRule embeddedKafka = new EmbeddedKafkaRule(1, true, "target-topic");
@@ -58,7 +54,7 @@ public class SpringKafkaApplicationTest {
         System.out.println("Done waiting for assignment");
     }
 
-    @Test
+//    @Test
     public void sendStuff() throws InterruptedException {
         User user = new User(UUID.randomUUID().toString(), null, null);
         kafkaTemplate.send("target-topic", user);

@@ -6,12 +6,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -22,7 +17,6 @@ import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.test.assertj.KafkaConditions;
 import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -30,13 +24,13 @@ import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Configuration
-@RunWith(SpringRunner.class)
-@EnableAutoConfiguration
-@SpringBootTest(
-        classes = {JSONStreamsAutoConfiguration.class},
-        properties = {
-                "ibm.spring.kafka.subpackages=com.ibm.boot.autoconfiguration.kafka.testdirectory"})
+//@Configuration
+//@RunWith(SpringRunner.class)
+//@EnableAutoConfiguration
+//@SpringBootTest(
+//        classes = {JSONStreamsAutoConfiguration.class},
+//        properties = {
+//                "ibm.spring.kafka.subpackages=com.ibm.boot.autoconfiguration.kafka.testdirectory"})
 public class SpringKafkaTests {
 
     @ClassRule
@@ -100,7 +94,7 @@ public class SpringKafkaTests {
         records.clear();
     }
 
-    @Test
+//    @Test
     public void setupConsumerAndProducer_sendTestMessage_testMessageIsSerializedCorrectly() throws InterruptedException {
         sendTestMessage("test message");
 
