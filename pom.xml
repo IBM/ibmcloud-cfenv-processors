@@ -18,7 +18,7 @@
     <groupId>com.ibm.cloud</groupId>
     <artifactId>kafka-eventing-parent-starter</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <properties>
         <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
@@ -168,7 +168,7 @@
         <connection>scm:git:git@github.com:IBM/ibmcloud-cfenv-processors.git</connection>
         <developerConnection>scm:git:git@github.com:IBM/ibmcloud-cfenv-processors.git</developerConnection>
         <url>https://github.com/IBM/ibmcloud-cfenv-processors</url>
-        <tag>kafka-eventing-parent-starter-0.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
 
