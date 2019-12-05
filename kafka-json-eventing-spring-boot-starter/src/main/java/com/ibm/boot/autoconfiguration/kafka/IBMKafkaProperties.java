@@ -11,6 +11,8 @@ public class IBMKafkaProperties {
     }
 
     public void setSubpackages(String[] subpackages) {
-        this.subpackages = subpackages;
+        if (subpackages != null) {
+            this.subpackages = subpackages;
+        }
     }
 }
