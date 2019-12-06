@@ -5,6 +5,7 @@ Uses the CFEnv processor to set the properties from the service entry in VCAP_SE
 - https://github.com/pivotal-cf/java-cfenv
 
 ## Services
+- AMQP
 - Cloudant
 - DB2
 - Kafka Event Streams
