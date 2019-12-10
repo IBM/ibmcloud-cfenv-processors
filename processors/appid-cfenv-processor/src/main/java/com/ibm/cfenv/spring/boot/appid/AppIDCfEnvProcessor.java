@@ -10,12 +10,9 @@ import java.util.logging.Logger;
 
 public class AppIDCfEnvProcessor implements CfEnvProcessor {
 
-    private static final Logger LOG = Logger.getLogger(AppIDCfEnvProcessor.class.getName());
-
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("AppID");
-        LOG.info("AppIDCfEnvProcessor matched service entry : " + service.getName());
         return match;
     }
 
