@@ -17,8 +17,6 @@ package com.ibm.cfenv.spring.boot.amqp;
 
 import io.pivotal.cfenv.test.AbstractCfEnvTests;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.util.ResourceUtils;
 
@@ -27,10 +25,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class MainTest extends AbstractCfEnvTests {
-    private final AmqpCfEnvProcessor amqpCfEnvProcessor = new AmqpCfEnvProcessor();
-    private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
-    @Test
+//    @Test
     public void testStuff() throws IOException {
         try {
             System.setProperty("VCAP_APPLICATION", "yes");
