@@ -1,5 +1,7 @@
 package com.ibm.beancustomizer.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
  * Instead, this one will only process beans it knows it has BeanCustomizers for.
  */
 class TypedBeanPostProcessor implements BeanPostProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(TypedBeanPostProcessor.class);
     private final List<BeanCustomizer> beanCustomizers;
 
     public TypedBeanPostProcessor(List<BeanCustomizer> beanCustomizers) {
@@ -20,28 +23,30 @@ class TypedBeanPostProcessor implements BeanPostProcessor {
 
     public Object postProcessAfterInitialization(Object bean, String beanName)
             throws BeansException {
-        List<BeanCustomizer> collect = beanCustomizers.stream()
+        List<BeanCustomizer> beanCustomizers = this.beanCustomizers.stream()
                 .filter(bc -> bc.accepts(bean, beanName))
                 .collect(Collectors.toList());
-        if (collect.isEmpty()) {
+        if (beanCustomizers.isEmpty()) {
+            logger.info("For beanName = [{}] there are no postProcessAfterInitialization bean customizers", beanName);
             return bean;
-        } else if (collect.size() == 1) {
-            return collect.get(0).postProcessAfterInit(bean);
+        } else if (beanCustomizers.size() == 1) {
+            logger.info("For beanName = [{}] there are the following postProcessAfterInitialization bean customizers = [{}]", beanName, beanCustomizers);
+            return beanCustomizers.get(0).postProcessAfterInit(bean);
         } else {
-            // Throw error
+            logger.info("For beanName = [{}] there are the following postProcessAfterInitialization bean customizers = [{}]", beanName, beanCustomizers);
             throw new BeanCreationException("Multiple bean customizers found");
         }
     }
 
-    public Object postProcessBeforeInitialization(Object bean, String beanName)
-            throws BeansException {
-        List<BeanCustomizer> collect = beanCustomizers.stream()
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        List<BeanCustomizer> beanCustomizers = this.beanCustomizers.stream()
                 .filter(bc -> bc.accepts(bean, beanName))
                 .collect(Collectors.toList());
-        if (collect.isEmpty()) {
+        logger.info("For beanName = [{}] there are the following postProcessBeforeInitialization bean customizers = [{}]", beanName, beanCustomizers);
+        if (beanCustomizers.isEmpty()) {
             return bean;
-        } else if (collect.size() == 1) {
-            return collect.get(0).postProcessBeforeInit(bean);
+        } else if (beanCustomizers.size() == 1) {
+            return beanCustomizers.get(0).postProcessBeforeInit(bean);
         } else {
             // Throw error
             throw new BeanCreationException("Multiple bean customizers found");
