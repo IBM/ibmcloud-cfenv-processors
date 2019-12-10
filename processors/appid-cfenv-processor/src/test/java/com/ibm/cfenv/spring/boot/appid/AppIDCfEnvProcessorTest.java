@@ -30,7 +30,6 @@ class AppIDCfEnvProcessorTest {
                 .readValue(url, Map.class)
                 .get("AppID"))
                 .get(0);
-        System.out.println(serviceData);
         service = new CfService(serviceData);
     }
     
