@@ -45,7 +45,7 @@ class AppIDCfEnvProcessorTest {
         assertThat(properties.size()).isEqualTo(3);
         assertThat(properties.get("spring.security.oauth2.client.registration.appid.clientId")).isEqualTo("appid_clientId");
         assertThat(properties.get("spring.security.oauth2.client.registration.appid.clientSecret")).isEqualTo("appid_secret");
-        assertThat(properties.get("spring.security.oauth2.client.registration.appid.issuerUri")).isEqualTo("appid_discoveryEndpoint");
+        assertThat(properties.get("spring.security.oauth2.client.registration.appid.issuerUri")).isEqualTo("appid_oauthServerUrl");
     }
 
     @Test
