@@ -9,7 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.Banner;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.util.ResourceUtils;
 
@@ -20,14 +24,22 @@ import mockit.MockUp;
 public class AppIDTest extends AbstractCfEnvTests {
         
     @Test
-    public void mongoServiceCreation() {
+    public void appidService() {
         mockVcapServicesWithNames("./vcap-services.json");
         Environment environment = getEnvironment();
         assertThat(environment.getProperty("spring.security.oauth2.client.registration.appid.clientId")).isEqualTo("appid_clientId");
         assertThat(environment.getProperty("spring.security.oauth2.client.registration.appid.clientSecret")).isEqualTo("appid_secret");
         assertThat(environment.getProperty("spring.security.oauth2.client.registration.appid.issuerUri")).isEqualTo("appid_oauthServerUrl");
     }
-
+    
+    public Environment getEnvironment() {
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(TestApp.class)
+                .web(WebApplicationType.NONE);
+        builder.bannerMode(Banner.Mode.OFF);
+        ApplicationContext applicationContext = builder.run();
+        return applicationContext.getEnvironment();
+    }
+    
     @SpringBootApplication
     static class TestApp {
     }
