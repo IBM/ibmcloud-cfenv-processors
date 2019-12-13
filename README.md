@@ -6,6 +6,7 @@ Uses the CFEnv processor to set the properties from the service entry in VCAP_SE
 
 ## Services
 - AMQP
+- App ID
 - Cloudant
 - DB2
 - Kafka Event Streams
