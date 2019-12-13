@@ -11,18 +11,8 @@ public class AppIDCfEnvProcessor implements CfEnvProcessor {
     
     @Override
     public boolean accept(CfService service) {
-        boolean userProvidedServiceSearchDisable = Boolean.parseBoolean(System.getenv("CFENV_USER_PROVIDED_SERVICE_SEARCH_DISABLE"));
         boolean match = service.existsByLabelStartsWith("AppID");
-        if (!match && !userProvidedServiceSearchDisable) {
-            Map<String, Object> credentials = service.getCredentials().getMap();
-            if (credentials.containsKey("clientId") && credentials.containsKey("secret") && 
-                    credentials.containsKey("appidServiceEndpoint") &&
-                    credentials.containsKey("oauthServerUrl")) {
-                return true;
-            }
-            return false;
-        }
-        return match;
+        return match || determineMatchInUserProvidedServices(service);
     }
 
     @Override
@@ -39,5 +29,19 @@ public class AppIDCfEnvProcessor implements CfEnvProcessor {
         properties.put("spring.security.oauth2.client.registration.appid.clientId", credentials.get("clientId"));
         properties.put("spring.security.oauth2.client.registration.appid.clientSecret", credentials.get("secret"));
         properties.put("spring.security.oauth2.client.registration.appid.issuerUri", credentials.get("oauthServerUrl"));
+    }
+    
+    private boolean determineMatchInUserProvidedServices(CfService service) {
+        boolean userProvidedServiceSearchDisable = Boolean.parseBoolean(System.getenv("CFENV_USER_PROVIDED_SERVICE_SEARCH_DISABLE"));
+        System.out.println(service.existsByLabelStartsWith("user-provided"));
+        if (!userProvidedServiceSearchDisable && service.existsByLabelStartsWith("user-provided")) {
+            Map<String, Object> credentials = service.getCredentials().getMap();
+            if (credentials.containsKey("clientId") && credentials.containsKey("secret") && 
+                    credentials.containsKey("appidServiceEndpoint") &&
+                    credentials.containsKey("oauthServerUrl")) {
+                return true;
+            }
+        }
+        return false;
     }
 }

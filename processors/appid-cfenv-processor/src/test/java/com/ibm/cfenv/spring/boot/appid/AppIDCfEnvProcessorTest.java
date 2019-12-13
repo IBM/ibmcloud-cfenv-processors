@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.cfenv.spring.boot.appid.AppIDCfEnvProcessor;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AppIDCfEnvProcessorTest {
+    
+    static {
+        System.setProperty("CFENV_USER_PROVIDED_SERVICE_SEARCH_DISABLE", "false");
+    }
+
 
     AppIDCfEnvProcessor appIDCfEnvProcessor = new AppIDCfEnvProcessor();
     private CfService service;
@@ -52,6 +59,12 @@ class AppIDCfEnvProcessorTest {
     public void getProperties() {
         assertThat(appIDCfEnvProcessor.getProperties().getServiceName()).isEqualTo("AppID");
         assertThat(appIDCfEnvProcessor.getProperties().getPropertyPrefixes()).isEqualTo("spring.security.oauth2.client.registration.appid");
-
+    }
+    
+    @Test
+    public void determineMatchInUserProvidedServices() throws IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, IllegalAccessException {
+        Method method = AppIDCfEnvProcessor.class.getDeclaredMethod("determineMatchInUserProvidedServices", CfService.class);
+        method.setAccessible(true);
+        assertThat(method.invoke(appIDCfEnvProcessor, service)).isEqualTo(false);
     }
 }
