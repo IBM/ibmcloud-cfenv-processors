@@ -28,35 +28,53 @@ class AppIDCfEnvProcessorTest {
 
 
     AppIDCfEnvProcessor appIDCfEnvProcessor = new AppIDCfEnvProcessor();
-    private CfService service;
     
-    @BeforeAll
-    public void initService() throws IOException {
+    public CfService initCFService() throws IOException {
         URL url = AppIDCfEnvProcessor.class.getClassLoader().getResource("./vcap-services.json");
         Map<String, Object> serviceData = (Map<String, Object>) ((List) new ObjectMapper()
                 .readValue(url, Map.class)
                 .get("AppID"))
                 .get(0);
-        service = new CfService(serviceData);
+        return new CfService(serviceData);
+    }
+    
+    public CfService initUserProvidedService() throws IOException {
+        URL url = AppIDCfEnvProcessor.class.getClassLoader().getResource("./vcap-user-provided-services.json");
+        Map<String, Object> serviceData = (Map<String, Object>) ((List) new ObjectMapper()
+                .readValue(url, Map.class)
+                .get("user-provided"))
+                .get(0);
+        return new CfService(serviceData);
     }
     
     @Test
-    public void accept() {
-        assertThat(appIDCfEnvProcessor.accept(service)).isTrue();
+    public void validCFService_accept_serviceAccepted() throws IOException {
+        assertThat(appIDCfEnvProcessor.accept(initCFService())).isTrue();
     }
 
     @Test
-    public void process() {
+    public void validCFService_propertiesProcessed_CorrectAppIDSetup() throws IOException {
         Map<String, Object> properties = new HashMap<>();
-        appIDCfEnvProcessor.process(service.getCredentials(), properties);
+        appIDCfEnvProcessor.process(initCFService().getCredentials(), properties);
         assertThat(properties.size()).isEqualTo(3);
         assertThat(properties.get("spring.security.oauth2.client.registration.appid.clientId")).isEqualTo("appid_clientId");
         assertThat(properties.get("spring.security.oauth2.client.registration.appid.clientSecret")).isEqualTo("appid_secret");
         assertThat(properties.get("spring.security.oauth2.client.registration.appid.issuerUri")).isEqualTo("appid_oauthServerUrl");
     }
+    
+    @Test
+    public void validUserProvidedService_propertiesProcessed_CorrectAppIDSetup() throws IOException {
+        Map<String, Object> properties = new HashMap<>();
+        System.out.println(initUserProvidedService().getCredentials().getMap());
+        appIDCfEnvProcessor.process(initUserProvidedService().getCredentials(), properties);
+        assertThat(properties.size()).isEqualTo(3);
+        assertThat(properties.get("spring.security.oauth2.client.registration.appid.clientId")).isEqualTo("user_provided_appid_clientId");
+        assertThat(properties.get("spring.security.oauth2.client.registration.appid.clientSecret")).isEqualTo("user_provided_appid_secret");
+        assertThat(properties.get("spring.security.oauth2.client.registration.appid.issuerUri")).isEqualTo("user_provided_appid_oauthServerUrl");
+    }
 
     @Test
-    public void getProperties() {
+    public void validCFService_getProperties_correctServiceNameAndPrefixes() {
         assertThat(appIDCfEnvProcessor.getProperties().getServiceName()).isEqualTo("AppID");
         assertThat(appIDCfEnvProcessor.getProperties().getPropertyPrefixes()).isEqualTo("spring.security.oauth2.client.registration.appid");
     }
