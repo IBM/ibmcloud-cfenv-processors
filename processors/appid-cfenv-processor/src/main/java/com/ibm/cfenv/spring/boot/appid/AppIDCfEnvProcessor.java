@@ -12,7 +12,7 @@ public class AppIDCfEnvProcessor implements CfEnvProcessor {
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("AppID");
-        return match || determineMatchInUserProvidedServices(service);
+        return match || isAppIDMatchFoundInUserDefinedService(service);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AppIDCfEnvProcessor implements CfEnvProcessor {
         properties.put("spring.security.oauth2.client.registration.appid.issuerUri", credentials.get("oauthServerUrl"));
     }
     
-    private boolean determineMatchInUserProvidedServices(CfService service) {
+    private boolean isAppIDMatchFoundInUserDefinedService(CfService service) {
         boolean userProvidedServiceSearchDisable = Boolean.parseBoolean(System.getenv("CFENV_USER_PROVIDED_SERVICE_SEARCH_DISABLE"));
         if (!userProvidedServiceSearchDisable && service.existsByLabelStartsWith("user-provided")) {
             Map<String, Object> credentials = service.getCredentials().getMap();
