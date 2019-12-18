@@ -1,0 +1,37 @@
+{
+    "AppID": [
+        {
+            "label": "AppID",
+            "provider": null,
+            "plan": "lite",
+            "name": "App ID-re",
+            "tags": [
+                "security",
+                "mobile",
+                "ibm_created",
+                "lite",
+                "ibmcloud-alias"
+            ],
+            "instance_name": "App ID-re",
+            "binding_name": null,
+            "credentials": {
+                "apikey": "appid_apikey",
+                "appidServiceEndpoint": "appid_appidServiceEndpoint",
+                "clientId": "appid_clientId",
+                "discoveryEndpoint": "appid_discoveryEndpoint",
+                "iam_apikey_description": "appid_iam_apikey_description",
+                "iam_apikey_name": "App ID-re",
+                "iam_role_crn": "appid_iam_role_crn",
+                "iam_serviceid_crn": "appid_iam_serviceid_crn",
+                "managementUrl": "appid_managementUrl",
+                "oauthServerUrl": "appid_oauthServerUrl",
+                "profilesUrl": "appid_profilesUrl",
+                "secret": "appid_secret",
+                "tenantId": "appid_tenantId",
+                "version": "4"
+            },
+            "syslog_drain_url": null,
+            "volume_mounts": []
+        }
+    ]
+}
