@@ -32,7 +32,7 @@ public class AppIDCfEnvProcessor implements CfEnvProcessor {
     }
     
     private boolean isAppIDMatchFoundInUserProvidedService(CfService service) {
-        boolean userProvidedServiceSearchDisable = Boolean.parseBoolean(System.getenv("CFENV_USER_PROVIDED_SERVICE_SEARCH_DISABLE"));
+        boolean userProvidedServiceSearchDisable = Boolean.parseBoolean(System.getProperty("CFENV_USER_PROVIDED_SERVICE_SEARCH_DISABLE"));
         if (!userProvidedServiceSearchDisable && service.existsByLabelStartsWith("user-provided")) {
             Map<String, Object> credentials = service.getCredentials().getMap();
             if (credentials.containsKey("clientId") && credentials.containsKey("secret") && 
