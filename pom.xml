@@ -161,8 +161,8 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git@github.com:IBM/ibmcloud-cfenv-processors.git</connection>
-        <developerConnection>scm:git:git@github.com:IBM/ibmcloud-cfenv-processors.git</developerConnection>
+        <connection>scm:git:git@github.com:yharish991/ibmcloud-cfenv-processors.git</connection>
+        <developerConnection>scm:git:git@github.com:yharish991/ibmcloud-cfenv-processors.git</developerConnection>
         <url>https://github.com/IBM/ibmcloud-cfenv-processors</url>
       <tag>HEAD</tag>
   </scm>
