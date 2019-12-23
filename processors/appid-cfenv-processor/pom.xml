@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ibm.cloud</groupId>
         <artifactId>cfenv-processors</artifactId>
-        <version>0.0.7-SNAPSHOT</version>
+        <version>0.0.8</version>
     </parent>
 
     <groupId>com.ibm.cfenv</groupId>
@@ -44,4 +44,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies> -->
+
+  <scm>
+    <tag>cfenv-processor-parent-0.0.8</tag>
+  </scm>
 </project>
