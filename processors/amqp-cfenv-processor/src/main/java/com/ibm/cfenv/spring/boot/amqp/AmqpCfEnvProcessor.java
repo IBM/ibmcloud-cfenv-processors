@@ -19,11 +19,14 @@ import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessor;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
 public class AmqpCfEnvProcessor implements CfEnvProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(AmqpCfEnvProcessor.class);
 
     @Override
     public boolean accept(CfService service) {
@@ -50,6 +53,10 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
 
         Map<String, String> certificate = (Map<String, String>) amqps.get("certificate");
         String certificate_base64 = certificate.get("certificate_base64");
+        if (certificate_base64 == null) {
+            logger.error("Base64 cert cannot be null amqps = [{}]", amqps);
+            throw new IllegalStateException("Base64 cert cannot be null");
+        }
         properties.put("sslcontext.contexts.amqp.trustedcert", certificate_base64);
     }
 
