@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ibm.cloud</groupId>
         <artifactId>cfenv-processors</artifactId>
-        <version>0.0.8-SNAPSHOT</version>
+        <version>0.0.9-SNAPSHOT</version>
     </parent>
 
     <artifactId>watson-cfenv-processor</artifactId>

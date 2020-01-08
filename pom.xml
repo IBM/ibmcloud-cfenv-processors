@@ -12,7 +12,7 @@
     <groupId>com.ibm.cloud</groupId>
     <artifactId>cfenv-processor-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.9-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ibm.cloud</groupId>
         <artifactId>samples</artifactId>
-        <version>0.0.8-SNAPSHOT</version>
+        <version>0.0.9-SNAPSHOT</version>
     </parent>
 
     <groupId>com.ibm.cloud</groupId>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>amqp-cfenv-processor</artifactId>
-            <version>0.0.7-SNAPSHOT</version>
+            <version>0.0.6</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cfenv</groupId>

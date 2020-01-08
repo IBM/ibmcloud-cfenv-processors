@@ -4,10 +4,44 @@
     <parent>
         <groupId>com.ibm.cloud</groupId>
         <artifactId>cfenv-processors</artifactId>
-        <version>0.0.7-SNAPSHOT</version>
+        <version>0.0.9-SNAPSHOT</version>
     </parent>
 
     <groupId>com.ibm.cfenv</groupId>
     <artifactId>appid-cfenv-processor</artifactId>
     <description>A CfEnvProcessor Implementation for App ID</description>
+    
+    <properties>
+        <version.maven-surefire-plugin>3.0.0-M4</version.maven-surefire-plugin>
+    </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${version.maven-surefire-plugin}</version>
+                <configuration>
+                    <environmentVariables>
+                        <VCAP_SERVICES>{"AppID":[{"label":"AppID","provider":null,"plan":"lite","name":"App ID-re","tags":["security","mobile","ibm_created","lite","ibmcloud-alias"],"instance_name":"App ID-re","binding_name":null,"credentials":{"apikey":"appid_apikey","appidServiceEndpoint":"appid_appidServiceEndpoint","clientId":"appid_clientId","discoveryEndpoint":"appid_discoveryEndpoint","iam_apikey_description":"appid_iam_apikey_description","iam_apikey_name":"App ID-re","iam_role_crn":"appid_iam_role_crn","iam_serviceid_crn":"appid_iam_serviceid_crn","managementUrl":"appid_managementUrl","oauthServerUrl":"appid_oauthServerUrl","profilesUrl":"appid_profilesUrl","secret":"appid_secret","tenantId":"appid_tenantId","version":"4"},"syslog_drain_url":null,"volume_mounts":[]}]}</VCAP_SERVICES>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <!-- <dependencies>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${version.byte-buddy}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <version>${version.byte-buddy}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies> -->
 </project>
