@@ -30,7 +30,9 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
 
     @Override
     public boolean accept(CfService service) {
-        return service.existsByLabelStartsWith("messages-for-rabbitmq");
+        boolean match = service.existsByLabelStartsWith("messages-for-rabbitmq");
+        logger.info("[{}] matches = [{}] with service = [{}]", this.getClass().getName(), match, service.getName());
+        return match;
     }
 
     @Override
