@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 class TypedBeanPostProcessor implements BeanPostProcessor {
     private static final Logger logger = LoggerFactory.getLogger(TypedBeanPostProcessor.class);
+
     private final List<BeanCustomizer> beanCustomizers;
 
     public TypedBeanPostProcessor(List<BeanCustomizer> beanCustomizers) {
@@ -26,14 +27,12 @@ class TypedBeanPostProcessor implements BeanPostProcessor {
         List<BeanCustomizer> beanCustomizers = this.beanCustomizers.stream()
                 .filter(bc -> bc.accepts(bean, beanName))
                 .collect(Collectors.toList());
+        logger.debug("For beanName = [{}] there are the following postProcessAfterInitialization bean customizers = [{}]", beanName, beanCustomizers);
         if (beanCustomizers.isEmpty()) {
-            logger.info("For beanName = [{}] there are no postProcessAfterInitialization bean customizers", beanName);
             return bean;
         } else if (beanCustomizers.size() == 1) {
-            logger.info("For beanName = [{}] there are the following postProcessAfterInitialization bean customizers = [{}]", beanName, beanCustomizers);
             return beanCustomizers.get(0).postProcessAfterInit(bean);
         } else {
-            logger.info("For beanName = [{}] there are the following postProcessAfterInitialization bean customizers = [{}]", beanName, beanCustomizers);
             throw new BeanCreationException("Multiple bean customizers found");
         }
     }
@@ -42,13 +41,12 @@ class TypedBeanPostProcessor implements BeanPostProcessor {
         List<BeanCustomizer> beanCustomizers = this.beanCustomizers.stream()
                 .filter(bc -> bc.accepts(bean, beanName))
                 .collect(Collectors.toList());
-        logger.info("For beanName = [{}] there are the following postProcessBeforeInitialization bean customizers = [{}]", beanName, beanCustomizers);
+        logger.debug("For beanName = [{}] there are the following postProcessBeforeInitialization bean customizers = [{}]", beanName, beanCustomizers);
         if (beanCustomizers.isEmpty()) {
             return bean;
         } else if (beanCustomizers.size() == 1) {
             return beanCustomizers.get(0).postProcessBeforeInit(bean);
         } else {
-            // Throw error
             throw new BeanCreationException("Multiple bean customizers found");
         }
     }

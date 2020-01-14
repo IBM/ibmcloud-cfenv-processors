@@ -19,19 +19,17 @@ import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessor;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
 public class AmqpCfEnvProcessor implements CfEnvProcessor {
-    private static final Logger logger = LoggerFactory.getLogger(AmqpCfEnvProcessor.class);
 
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("messages-for-rabbitmq");
-        logger.info("[{}] matches = [{}] with service = [{}]", this.getClass().getName(), match, service.getName());
+        String message = String.format("name = [%s] with match = [%s] service = [%s]", this.getClass().getSimpleName(), match, service.getName());
+        System.out.println(message);
         return match;
     }
 
@@ -46,6 +44,8 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
         int port = (int) host.get("port");
         properties.put("spring.rabbitmq.host", hostname);
         properties.put("spring.rabbitmq.port", port);
+        String message = String.format("Setting up the amqp connection hostname = [%s] port = [%s]", hostname, port);
+        System.out.println(message);
 
         Map<String, String> authentication = (Map<String, String>) amqps.get("authentication");
         String password = authentication.get("password");
@@ -56,7 +56,7 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
         Map<String, String> certificate = (Map<String, String>) amqps.get("certificate");
         String certificate_base64 = certificate.get("certificate_base64");
         if (certificate_base64 == null) {
-            logger.error("Base64 cert cannot be null amqps = [{}]", amqps);
+            System.err.println(String.format("Base64 cert cannot be null amqps = [%s]", amqps));
             throw new IllegalStateException("Base64 cert cannot be null");
         }
         properties.put("sslcontext.contexts.amqp.trustedcert", certificate_base64);

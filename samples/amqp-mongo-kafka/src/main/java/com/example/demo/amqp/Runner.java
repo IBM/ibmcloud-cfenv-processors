@@ -17,6 +17,7 @@ package com.example.demo.amqp;
 
 import org.springframework.amqp.rabbit.core.RabbitOperations;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
@@ -24,17 +25,20 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class Runner implements CommandLineRunner {
 
-    private final RabbitOperations rabbitOperations;
     private final Receiver receiver;
+    private final RabbitProperties rabbitProperties;
+    private final RabbitOperations rabbitOperations;
 
-    public Runner(Receiver receiver, RabbitOperations rabbitOperations) {
+    public Runner(RabbitProperties rabbitProperties, Receiver receiver, RabbitOperations rabbitOperations) {
+        this.rabbitProperties = rabbitProperties;
         this.receiver = receiver;
         this.rabbitOperations = rabbitOperations;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Sending message to rabbit");
+        String message = String.format("Sending message to rabbit host = [%s] port = [%s]", rabbitProperties.getHost(), rabbitProperties.getPort());
+        System.out.println(message);
         rabbitOperations.convertAndSend(AMQPConfiguration.topicExchangeName, "foo.bar.baz", "Hello from RabbitMQ!");
         receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
     }

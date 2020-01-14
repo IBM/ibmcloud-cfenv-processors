@@ -11,16 +11,13 @@
     <groupId>com.ibm.cloud</groupId>
     <artifactId>amqp-mongo-kafka</artifactId>
     <description>Demo project for Spring Boot</description>
+    <version>1.0</version>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>amqp-cfenv-processor</artifactId>
