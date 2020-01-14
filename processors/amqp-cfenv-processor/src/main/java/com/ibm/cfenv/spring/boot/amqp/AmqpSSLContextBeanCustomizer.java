@@ -23,7 +23,7 @@ public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConne
         } else {
             this.sslContexts = sslContexts;
         }
-        logger.info("AmqpSSLContextBeanCustomizer will attempt to configure with these contexts = {}", sslContexts.keySet());
+        logger.info("AmqpSSLContextBeanCustomizer will attempt to configure with these contexts = {}", this.sslContexts.keySet());
     }
 
     @Override
