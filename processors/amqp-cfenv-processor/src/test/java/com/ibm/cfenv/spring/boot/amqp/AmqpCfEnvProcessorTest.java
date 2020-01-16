@@ -103,7 +103,6 @@ class AmqpCfEnvProcessorTest {
         assertThat(properties.get("spring.rabbitmq.ssl.enabled")).isNull();
         assertThat(properties.get("cfenv.processor.icdamqp.enabled")).isNull();
         assertThat(properties.get("cfenv.processor.icdamqp.sslcontext")).isNull();
-
     }
 
     @Test
@@ -131,4 +130,5 @@ class AmqpCfEnvProcessorTest {
 
         Assertions.assertThrows(IllegalStateException.class, () -> amqpCfEnvProcessor.process(cfCredentials, properties));
     }
+
 }
