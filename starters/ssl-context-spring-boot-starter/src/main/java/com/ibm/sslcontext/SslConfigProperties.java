@@ -7,17 +7,17 @@ import java.util.Map;
 
 @ConfigurationProperties(prefix = "sslcontext")
 public class SslConfigProperties {
-    private Map<String, SSLContext> contexts = new HashMap<>();
+    private Map<String, SSLConfig> contexts = new HashMap<>();
 
-    public Map<String, SSLContext> getContexts() {
+    public Map<String, SSLConfig> getContexts() {
         return contexts;
     }
 
-    public void setContexts(Map<String, SSLContext> contexts) {
+    public void setContexts(Map<String, SSLConfig> contexts) {
         this.contexts = contexts;
     }
 
-    public static final class SSLContext {
+    public static final class SSLConfig {
         private String trustedCert;
 
         public String getTrustedCert() {

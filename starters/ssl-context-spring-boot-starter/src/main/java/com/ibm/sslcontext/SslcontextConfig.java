@@ -36,7 +36,7 @@ public class SslcontextConfig {
                         logger.info("The SSLContext for cert [{}] is empty = [{}]", entry.getKey(), empty);
                         return !empty;
                     })
-                    .collect(Collectors.toMap((Function<? super Map.Entry<String, SslConfigProperties.SSLContext>, String>) entry -> entry.getKey(), (Function<? super Map.Entry<String, SslConfigProperties.SSLContext>, SSLContext>) entry -> {
+                    .collect(Collectors.toMap((Function<? super Map.Entry<String, SslConfigProperties.SSLConfig>, String>) entry -> entry.getKey(), (Function<? super Map.Entry<String, SslConfigProperties.SSLConfig>, SSLContext>) entry -> {
                         try {
                             logger.info("Configuring ssl context for key = [{}] with value =[{}]", entry.getKey(), entry.getValue() == null ? null : entry.getValue().getTrustedCert());
                             String trustedCert = entry.getValue().getTrustedCert();
