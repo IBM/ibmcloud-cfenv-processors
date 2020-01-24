@@ -18,14 +18,14 @@ public class SslConfigProperties {
     }
 
     public static final class SSLConfig {
-        private String trustedCert;
+        private String certificate;
 
-        public String getTrustedCert() {
-            return trustedCert;
+        public String getCertificate() {
+            return certificate;
         }
 
-        public void setTrustedCert(String trustedCert) {
-            this.trustedCert = trustedCert;
+        public void setCertificate(String certificate) {
+            this.certificate = certificate;
         }
     }
 }

@@ -31,15 +31,15 @@ public class SslcontextConfig {
         if (!sslConfigProperties.getContexts().isEmpty()) {
             contextMap = sslConfigProperties.getContexts().entrySet().stream()
                     .filter(entry -> {
-                        String cert = entry.getValue().getTrustedCert();
+                        String cert = entry.getValue().getCertificate();
                         boolean empty = StringUtils.isEmpty(cert);
                         logger.info("The SSLContext for cert [{}] is empty = [{}]", entry.getKey(), empty);
                         return !empty;
                     })
                     .collect(Collectors.toMap((Function<? super Map.Entry<String, SslConfigProperties.SSLConfig>, String>) entry -> entry.getKey(), (Function<? super Map.Entry<String, SslConfigProperties.SSLConfig>, SSLContext>) entry -> {
                         try {
-                            logger.info("Configuring ssl context for key = [{}] with value =[{}]", entry.getKey(), entry.getValue() == null ? null : entry.getValue().getTrustedCert());
-                            String trustedCert = entry.getValue().getTrustedCert();
+                            logger.info("Configuring ssl context for key = [{}] with value =[{}]", entry.getKey(), entry.getValue() == null ? null : entry.getValue().getCertificate());
+                            String trustedCert = entry.getValue().getCertificate();
                             Base64TrustingTrustManager tm = new Base64TrustingTrustManager(trustedCert);
                             SSLContext ctx = SSLContext.getInstance("TLS");
                             ctx.init(null, new TrustManager[]{tm}, null);
