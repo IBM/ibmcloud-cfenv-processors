@@ -53,20 +53,20 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
         properties.put("spring.rabbitmq.password", password);
         properties.put("spring.rabbitmq.username", username);
 
-        String certificate_base64 = System.getenv("sslcontext.contexts.amqp.trustedcert");
+        String certificate_base64 = System.getenv("sslcontext.contexts.amqp.certificate");
         if (certificate_base64 == null) {
             Map<String, String> certificate = (Map<String, String>) amqps.get("certificate");
             certificate_base64 = certificate.get("certificate_base64");
-            System.out.println("Using the VCAP_SERVICES value for sslcontext.contexts.amqp.trustedcert");
+            System.out.println("Using the VCAP_SERVICES value for sslcontext.contexts.amqp.certificate");
         } else {
-            System.out.println("Using the environment value for sslcontext.contexts.amqp.trustedcert");
+            System.out.println("Using the environment value for sslcontext.contexts.amqp.certificate");
         }
 
         if (certificate_base64 == null) {
             System.err.println(String.format("Base64 cert cannot be null amqps = [%s]", amqps));
             throw new IllegalStateException("Base64 cert cannot be null");
         }
-        properties.put("sslcontext.contexts.amqp.trustedcert", certificate_base64);
+        properties.put("sslcontext.contexts.amqp.certificate", certificate_base64);
     }
 
     @Override
