@@ -4,13 +4,13 @@
     <parent>
         <groupId>com.ibm.cloud</groupId>
         <artifactId>samples</artifactId>
-        <version>0.0.12-SNAPSHOT</version>
+        <version>0.0.12</version>
     </parent>
 
     <groupId>com.ibm.cloud</groupId>
     <artifactId>amqp-mongo-kafka</artifactId>
     <description>Demo project for Spring Boot</description>
-    <version>0.0.12-SNAPSHOT</version>
+    <version>0.0.12</version>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,17 +20,17 @@
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>amqp-cfenv-processor</artifactId>
-            <version>0.0.11-SNAPSHOT</version>
+            <version>0.0.12</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>mongodb-cfenv-processor</artifactId>
-            <version>0.0.11-SNAPSHOT</version>
+            <version>0.0.12</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cfenv</groupId>
             <artifactId>event-streams-cfenv-processor</artifactId>
-            <version>0.0.11-SNAPSHOT</version>
+            <version>0.0.12</version>
         </dependency>
 
         <dependency>
