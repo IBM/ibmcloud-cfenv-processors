@@ -38,7 +38,7 @@ public class SslcontextConfig {
                     })
                     .collect(Collectors.toMap((Function<? super Map.Entry<String, SslConfigProperties.SSLConfig>, String>) entry -> entry.getKey(), (Function<? super Map.Entry<String, SslConfigProperties.SSLConfig>, SSLContext>) entry -> {
                         try {
-                            logger.info("Configuring ssl context for key = [{}] with value =[{}]", entry.getKey(), entry.getValue() == null ? null : entry.getValue().getCertificate());
+                            logger.info("Configuring ssl context for key = [{}] with value =[{}]", entry.getKey(), entry.getValue() == null ? null : entry.getValue().getCertificate().substring(0, 10));
                             String trustedCert = entry.getValue().getCertificate();
                             Base64TrustingTrustManager tm = new Base64TrustingTrustManager(trustedCert);
                             SSLContext ctx = SSLContext.getInstance("TLS");

@@ -28,8 +28,6 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
     @Override
     public boolean accept(CfService service) {
         boolean match = service.existsByLabelStartsWith("messages-for-rabbitmq");
-        String message = String.format("name = [%s] with match = [%s] service = [%s]", this.getClass().getSimpleName(), match, service.getName());
-        System.out.println(message);
         return match;
     }
 
@@ -44,8 +42,6 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
         int port = (int) host.get("port");
         properties.put("spring.rabbitmq.host", hostname);
         properties.put("spring.rabbitmq.port", port);
-        String message = String.format("Setting up the amqp connection hostname = [%s] port = [%s]", hostname, port);
-        System.out.println(message);
 
         Map<String, String> authentication = (Map<String, String>) amqps.get("authentication");
         String password = authentication.get("password");
@@ -57,9 +53,6 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
         if (certificate_base64 == null) {
             Map<String, String> certificate = (Map<String, String>) amqps.get("certificate");
             certificate_base64 = certificate.get("certificate_base64");
-            System.out.println("Using the VCAP_SERVICES value for sslcontext.contexts.amqp.certificate");
-        } else {
-            System.out.println("Using the environment value for sslcontext.contexts.amqp.certificate");
         }
 
         if (certificate_base64 == null) {
