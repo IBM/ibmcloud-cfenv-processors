@@ -19,18 +19,16 @@ import io.pivotal.cfenv.core.CfCredentials;
 import io.pivotal.cfenv.core.CfService;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessor;
 import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
 public class AmqpCfEnvProcessor implements CfEnvProcessor {
-    private static final Logger logger = LoggerFactory.getLogger(AmqpCfEnvProcessor.class);
 
     @Override
     public boolean accept(CfService service) {
-        return service.existsByLabelStartsWith("messages-for-rabbitmq");
+        boolean match = service.existsByLabelStartsWith("messages-for-rabbitmq");
+        return match;
     }
 
     @Override
@@ -51,13 +49,17 @@ public class AmqpCfEnvProcessor implements CfEnvProcessor {
         properties.put("spring.rabbitmq.password", password);
         properties.put("spring.rabbitmq.username", username);
 
-        Map<String, String> certificate = (Map<String, String>) amqps.get("certificate");
-        String certificate_base64 = certificate.get("certificate_base64");
+        String certificate_base64 = System.getenv("sslcontext.contexts.amqp.certificate");
         if (certificate_base64 == null) {
-            logger.error("Base64 cert cannot be null amqps = [{}]", amqps);
+            Map<String, String> certificate = (Map<String, String>) amqps.get("certificate");
+            certificate_base64 = certificate.get("certificate_base64");
+        }
+
+        if (certificate_base64 == null) {
+            System.err.println(String.format("Base64 cert cannot be null amqps = [%s]", amqps));
             throw new IllegalStateException("Base64 cert cannot be null");
         }
-        properties.put("sslcontext.contexts.amqp.trustedcert", certificate_base64);
+        properties.put("sslcontext.contexts.amqp.certificate", certificate_base64);
     }
 
     @Override

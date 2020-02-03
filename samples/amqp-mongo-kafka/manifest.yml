@@ -3,7 +3,8 @@ applications:
   - name: george-demo-app
     memory: 512M
     instances: 2
-    path: target/demo-0.0.2-SNAPSHOT.jar
+    path: target/amqp-mongo-kafka-1.0.jar
     services:
       - test
       - rabbit
+      - default-event-streams

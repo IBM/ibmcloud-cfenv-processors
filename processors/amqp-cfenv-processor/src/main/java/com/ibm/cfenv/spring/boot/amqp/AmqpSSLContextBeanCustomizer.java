@@ -2,6 +2,8 @@ package com.ibm.cfenv.spring.boot.amqp;
 
 import com.ibm.beancustomizer.config.BeanCustomizer;
 import com.rabbitmq.client.ConnectionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConnectionFactory> {
+    private static final Logger logger = LoggerFactory.getLogger(AmqpSSLContextBeanCustomizer.class);
 
     private final Map<String, SSLContext> sslContexts;
 
@@ -20,12 +23,16 @@ public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConne
         } else {
             this.sslContexts = sslContexts;
         }
+        logger.info("AmqpSSLContextBeanCustomizer will attempt to configure with these contexts = {}", this.sslContexts.keySet());
     }
 
     @Override
     public CachingConnectionFactory postProcessBeforeInit(CachingConnectionFactory cachingConnectionFactory) {
         SSLContext sslContext = sslContexts.get("amqp");
-        if (sslContext != null) {
+        if (sslContext == null) {
+            logger.warn("SSL configuration for amqp is null");
+        } else {
+            logger.info("Configuring the SSL configuration for amqp");
             ConnectionFactory connectionFactory = cachingConnectionFactory.getRabbitConnectionFactory();
             connectionFactory.useSslProtocol(sslContext);
             connectionFactory.enableHostnameVerification();
