@@ -18,7 +18,7 @@ public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
     @Override
     public CfEnvProcessorProperties getProperties() {
         return CfEnvProcessorProperties.builder()
-                .propertyPrefixes("elasticsearch")
+                .propertyPrefixes("sslcontext,elasticsearch")
                 .serviceName("elasticsearch")
                 .build();
     }
@@ -40,6 +40,6 @@ public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
         properties.put("elasticsearch.port", port);
         properties.put("elasticsearch.username", authentication.get("username"));
         properties.put("elasticsearch.password", authentication.get("password"));
-        properties.put("elasticsearch.certificate", certificate.get("certificate_base64"));
+        properties.put("sslcontext.contexts.elasticsearch.certificate", certificate.get("certificate_base64"));
     }
 }

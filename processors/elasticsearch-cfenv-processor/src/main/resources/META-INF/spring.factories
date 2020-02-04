@@ -1,2 +1,4 @@
 io.pivotal.cfenv.spring.boot.CfEnvProcessor=\
   com.ibm.cfenv.spring.boot.elasticsearch.ElasticsearchCfEnvProcessor
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.ibm.cfenv.spring.boot.elasticsearch.ElasticsearchClientOptionsConfiguration
