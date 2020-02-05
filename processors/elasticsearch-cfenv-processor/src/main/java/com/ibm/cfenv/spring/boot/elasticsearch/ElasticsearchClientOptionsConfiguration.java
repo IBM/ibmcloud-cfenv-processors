@@ -25,12 +25,9 @@ public class ElasticsearchClientOptionsConfiguration {
     
     @Value("${elasticsearch.port}")
     String port;
-    
-    Map<String, SSLContext> sslContexts;
-    
+        
     @Bean
     public ElasticsearchSSLContextBeanCustomizer elasticsearchSSLContextBeanCustomizer(Map<String, SSLContext> sslContexts) {
-        this.sslContexts = sslContexts;
         return new ElasticsearchSSLContextBeanCustomizer(sslContexts);
     }
 
@@ -38,12 +35,10 @@ public class ElasticsearchClientOptionsConfiguration {
     @ConditionalOnMissingBean
     public ClientConfiguration defaultClientConfiguration() {
         try {
-            SSLContext sslContext = sslContexts.get("elasticsearch");
             HttpHeaders headers = new HttpHeaders();         
             headers.setBasicAuth(username,password);
             return ClientConfiguration.builder()
                     .connectedTo(host + ":" + port)
-                    .usingSsl(sslContext)
                     .withDefaultHeaders(headers)
                     .build();
         } catch (final Exception e) {
