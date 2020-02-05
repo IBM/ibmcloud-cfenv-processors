@@ -52,10 +52,9 @@ public class ElasticsearchSSLContextBeanCustomizer implements BeanCustomizer<Cli
         SSLContext sslContext = sslContexts.get("elasticsearch");
         if (sslContext != null) {
             original = ClientConfiguration.builder()
-                    .connectedTo(host + ":" + port)
+                    .connectedTo(original.getEndpoints().get(0))
                     .usingSsl(sslContext)
                     .withDefaultHeaders(original.getDefaultHeaders())
-                    .withBasicAuth(username, password)
                     .withConnectTimeout(original.getConnectTimeout())
                     .withSocketTimeout(original.getSocketTimeout())
                     .build();
