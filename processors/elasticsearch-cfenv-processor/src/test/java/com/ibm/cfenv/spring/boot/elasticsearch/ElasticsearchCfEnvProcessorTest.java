@@ -1,18 +1,17 @@
 package com.ibm.cfenv.spring.boot.elasticsearch;
 
-import io.pivotal.cfenv.core.CfService;
-
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.pivotal.cfenv.core.CfService;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

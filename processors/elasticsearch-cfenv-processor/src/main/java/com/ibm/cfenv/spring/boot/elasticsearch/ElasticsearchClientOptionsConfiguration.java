@@ -1,7 +1,6 @@
 package com.ibm.cfenv.spring.boot.elasticsearch;
 
 import java.util.Map;
-
 import javax.net.ssl.SSLContext;
 
 import org.springframework.beans.factory.BeanCreationException;
