@@ -8,6 +8,9 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.net.ssl.SSLContext;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +38,14 @@ public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConne
             logger.info("Configuring the SSL configuration for amqp");
             ConnectionFactory connectionFactory = cachingConnectionFactory.getRabbitConnectionFactory();
             connectionFactory.useSslProtocol(sslContext);
-            connectionFactory.enableHostnameVerification();
+            try {
+                Method enableHostnameVerification = ConnectionFactory.class.getMethod("enableHostnameVerification");
+                if (enableHostnameVerification != null) {
+                    enableHostnameVerification.invoke(connectionFactory);
+                }
+            } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                logger.info("enableHostnameVerification method doesn't exist in com.rabbitmq.client.ConnectionFactory, skipping the method invocation");
+            }
         }
         return cachingConnectionFactory;
     }
