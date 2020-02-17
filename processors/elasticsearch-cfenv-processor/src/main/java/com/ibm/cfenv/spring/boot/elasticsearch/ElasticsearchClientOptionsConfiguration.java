@@ -13,21 +13,28 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.data.elasticsearch.ReactiveRestClientProperties;
 import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientBuilderCustomizer;
 import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.PropertyMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
+import org.springframework.data.elasticsearch.client.reactive.ReactiveElasticsearchClient;
+import org.springframework.data.elasticsearch.client.reactive.ReactiveRestClients;
 import org.springframework.http.HttpHeaders;
 
 @Configuration
-@EnableConfigurationProperties(RestClientProperties.class)
+@EnableConfigurationProperties({ RestClientProperties.class, ReactiveRestClientProperties.class })
 public class ElasticsearchClientOptionsConfiguration {
 
     @Autowired
     RestClientProperties restClientProperties;
+    
+    @Autowired
+    ReactiveRestClientProperties reactiveRestClientProperties;
     
     @Autowired
     private Environment env;
@@ -65,22 +72,34 @@ public class ElasticsearchClientOptionsConfiguration {
     }
     
     @Bean
-    @ConditionalOnProperty(prefix = "ibm.cfenv.processor.elasticsearch", name = "host")
+    @ConditionalOnProperty(prefix = "spring.data.elasticsearch.client.reactive", name = "endpoints")
     @ConditionalOnMissingBean
     public ClientConfiguration defaultClientConfiguration() {
-        String host = env.getProperty("ibm.cfenv.processor.elasticsearch.host");
-        String port = env.getProperty("ibm.cfenv.processor.elasticsearch.port");
-        String username = env.getProperty("ibm.cfenv.processor.elasticsearch.username");
-        String password = env.getProperty("ibm.cfenv.processor.elasticsearch.password");
+        String endpoints = env.getProperty("spring.data.elasticsearch.client.reactive.endpoints");
+        String username = env.getProperty("spring.data.elasticsearch.client.reactive.username");
+        String password = env.getProperty("spring.data.elasticsearch.client.reactive.password");
         try {
             HttpHeaders headers = new HttpHeaders();         
             headers.setBasicAuth(username, password);
-            return ClientConfiguration.builder()
-                    .connectedTo(host + ":" + port)
+            
+            ClientConfiguration.MaybeSecureClientConfigurationBuilder builder = ClientConfiguration.builder().connectedTo(endpoints);
+            
+            PropertyMapper map = PropertyMapper.get();
+            map.from(reactiveRestClientProperties.getConnectionTimeout()).whenNonNull().to(builder::withConnectTimeout);
+            map.from(reactiveRestClientProperties.getSocketTimeout()).whenNonNull().to(builder::withSocketTimeout);
+            
+            return builder
                     .withDefaultHeaders(headers)
                     .build();
         } catch (final Exception e) {
             throw new BeanCreationException(e.getMessage(), e);
         }
+    }
+    
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "spring.data.elasticsearch.client.reactive", name = "endpoints")
+    public ReactiveElasticsearchClient reactiveElasticsearchClient(ClientConfiguration clientConfiguration) {
+        return ReactiveRestClients.create(clientConfiguration);
     }
 }

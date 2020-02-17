@@ -54,10 +54,9 @@ public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
         }
 
         if (clients.contains(REACTIVE_CLIENT)) {
-            properties.put("ibm.cfenv.processor.elasticsearch.host", hostname);
-            properties.put("ibm.cfenv.processor.elasticsearch.port", port);
-            properties.put("ibm.cfenv.processor.elasticsearch.username", username);
-            properties.put("ibm.cfenv.processor.elasticsearch.password", password);
+            properties.put("spring.data.elasticsearch.client.reactive.endpoints", hostname + ":" + port);
+            properties.put("spring.data.elasticsearch.client.reactive.username", username);
+            properties.put("spring.data.elasticsearch.client.reactive.password", password);
         } else {
             properties.put("spring.elasticsearch.rest.uris", uris);
             properties.put("spring.elasticsearch.rest.username", username);
