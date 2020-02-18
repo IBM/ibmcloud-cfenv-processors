@@ -40,6 +40,8 @@ public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConne
             connectionFactory.useSslProtocol(sslContext);
             Method enableHostnameVerification = null;
             try {
+                // check if enableHostnameVerification method exists in ConnectionFactory and invoke using Java Reflection API.
+                // spring-rabbit version pulled by Spring boot 1.5.x doesn't support enableHostnameVerification method. 
                 enableHostnameVerification = ConnectionFactory.class.getMethod("enableHostnameVerification");
                 enableHostnameVerification.invoke(connectionFactory);
             } catch (NoSuchMethodException e) {
