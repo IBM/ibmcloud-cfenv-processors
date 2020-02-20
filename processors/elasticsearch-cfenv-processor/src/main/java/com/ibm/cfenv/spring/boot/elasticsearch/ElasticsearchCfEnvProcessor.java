@@ -7,8 +7,10 @@ import io.pivotal.cfenv.spring.boot.CfEnvProcessorProperties;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
 
@@ -30,7 +32,7 @@ public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
 
     @Override
     public void process(CfCredentials cfCredentials, Map<String, Object> properties) {
-        List<String> clients = getClients(System.getenv("IBM_CFENVPROCESSOR_ELASTICSEARCH_CLIENTS_ENABLE"));
+        Set<String> clients = getClients();
         
         Map<String, Object> credentialsData = cfCredentials.getMap();
         Map<String, Object> connection = (Map<String, Object>) credentialsData.get("connection");
@@ -62,12 +64,15 @@ public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
         properties.put("sslcontext.contexts.elasticsearch.certificate", certificate.get("certificate_base64"));
     }
     
-    private List<String> getClients(String elasticSearchClients) {
-        if (elasticSearchClients == null || elasticSearchClients.isEmpty()) {
-            List<String> clients = new ArrayList<String>();
+    private Set<String> getClients() {
+        String rawElasticSearchClients = System.getenv("IBM_CFENVPROCESSOR_ELASTICSEARCH_CLIENTS_ENABLE");
+        Set<String> clients;
+        if (rawElasticSearchClients == null || rawElasticSearchClients.isEmpty()) {
+            clients = new HashSet<String>();
             clients.add(REST_CLIENT);
             return clients;
         }
-        return Arrays.asList(System.getenv("IBM_CFENVPROCESSOR_ELASTICSEARCH_CLIENTS_ENABLE").toLowerCase().split(","));
+        clients = new HashSet<String>(Arrays.asList(rawElasticSearchClients.toLowerCase().split(",")));
+        return clients;
     }
 }
