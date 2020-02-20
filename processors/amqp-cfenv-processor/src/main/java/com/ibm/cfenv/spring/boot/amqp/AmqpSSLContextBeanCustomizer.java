@@ -8,6 +8,9 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.net.ssl.SSLContext;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +38,19 @@ public class AmqpSSLContextBeanCustomizer implements BeanCustomizer<CachingConne
             logger.info("Configuring the SSL configuration for amqp");
             ConnectionFactory connectionFactory = cachingConnectionFactory.getRabbitConnectionFactory();
             connectionFactory.useSslProtocol(sslContext);
-            connectionFactory.enableHostnameVerification();
+            Method enableHostnameVerification = null;
+            try {
+                // check if enableHostnameVerification method exists in ConnectionFactory and invoke using Java Reflection API.
+                // spring-rabbit version pulled by Spring boot 1.5.x doesn't support enableHostnameVerification method. 
+                enableHostnameVerification = ConnectionFactory.class.getMethod("enableHostnameVerification");
+                enableHostnameVerification.invoke(connectionFactory);
+            } catch (NoSuchMethodException e) {
+                logger.debug("enableHostnameVerification method doesn't exist in com.rabbitmq.client.ConnectionFactory, ignoring the method invocation");
+            } catch (SecurityException e) {
+                logger.warn("unable to reflectively invoke enableHostnameVerification");
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                logger.warn("unable to invoke enableHostnameVerification due to potential spring boot rabbit version mismatch");
+            }
         }
         return cachingConnectionFactory;
     }

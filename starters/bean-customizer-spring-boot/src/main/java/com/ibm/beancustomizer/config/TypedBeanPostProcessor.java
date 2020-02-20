@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Simple attempt to avoid having every bean post processor processe every bean.
+ * Simple attempt to avoid having every bean post processor processes every bean.
  * Instead, this one will only process beans it knows it has BeanCustomizers for.
  */
 class TypedBeanPostProcessor implements BeanPostProcessor {
@@ -31,7 +31,11 @@ class TypedBeanPostProcessor implements BeanPostProcessor {
         if (beanCustomizers.isEmpty()) {
             return bean;
         } else if (beanCustomizers.size() == 1) {
-            return beanCustomizers.get(0).postProcessAfterInit(bean);
+            try {
+                return beanCustomizers.get(0).postProcessAfterInit(bean);
+            } catch (Exception e) {
+                 throw new BeanCreationException("Error post processing bean", e);
+            }
         } else {
             throw new BeanCreationException("Multiple bean customizers found");
         }
@@ -45,7 +49,11 @@ class TypedBeanPostProcessor implements BeanPostProcessor {
         if (beanCustomizers.isEmpty()) {
             return bean;
         } else if (beanCustomizers.size() == 1) {
-            return beanCustomizers.get(0).postProcessBeforeInit(bean);
+            try {
+                return beanCustomizers.get(0).postProcessBeforeInit(bean);
+            } catch (Exception e) {
+                throw new BeanCreationException("Error post processing bean", e);
+            }
         } else {
             throw new BeanCreationException("Multiple bean customizers found");
         }
