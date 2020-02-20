@@ -57,10 +57,6 @@ public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
             properties.put("spring.data.elasticsearch.client.reactive.endpoints", hostname + ":" + port);
             properties.put("spring.data.elasticsearch.client.reactive.username", username);
             properties.put("spring.data.elasticsearch.client.reactive.password", password);
-        } else {
-            properties.put("spring.elasticsearch.rest.uris", uris);
-            properties.put("spring.elasticsearch.rest.username", username);
-            properties.put("spring.elasticsearch.rest.password", password);
         }
         
         properties.put("sslcontext.contexts.elasticsearch.certificate", certificate.get("certificate_base64"));
@@ -68,7 +64,9 @@ public class ElasticsearchCfEnvProcessor implements CfEnvProcessor {
     
     private List<String> getClients(String elasticSearchClients) {
         if (elasticSearchClients == null || elasticSearchClients.isEmpty()) {
-            return new ArrayList<String>();
+            List<String> clients = new ArrayList<String>();
+            clients.add(REST_CLIENT);
+            return clients;
         }
         return Arrays.asList(System.getenv("IBM_CFENVPROCESSOR_ELASTICSEARCH_CLIENTS_ENABLE").toLowerCase().split(","));
     }
