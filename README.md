@@ -1,4 +1,4 @@
-## Project for services on IBM Cloud using Spring Boot Starter and CFEnv
+## Project for services on IBM Cloud using Spring Boot Starter and CFEnv [![Build Status](https://travis-ci.org/IBM/ibmcloud-cfenv-processors.svg?branch=master)](https://travis-ci.org/IBM/ibmcloud-cfenv-processors)
 Project to authenticate service instances on IBM Cloud using Spring Boot Starter: https://github.com/watson-developer-cloud/spring-boot-starter.
 
 Uses the CFEnv processor to set the properties from the service entry in VCAP_SERVICES.
