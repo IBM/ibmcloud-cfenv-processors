@@ -12,7 +12,7 @@
     <description>A CfEnvProcessor Implementation for Mongodb</description>
 
     <properties>
-        <version.spring-data-mongodb>2.2.1.RELEASE</version.spring-data-mongodb>
+        <version.spring-data-mongodb>3.3.5</version.spring-data-mongodb>
     </properties>
 
     <dependencies>
